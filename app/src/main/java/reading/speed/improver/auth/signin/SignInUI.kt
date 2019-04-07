@@ -1,9 +1,11 @@
-package com.example.trofi.course_work.auth
+package reading.speed.improver.auth.signin
 
 import android.view.View
 import android.widget.ListView
 import android.widget.TextView
-import com.example.trofi.course_work.teacher.UsersAdapter
+import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk27.coroutines.onItemClick
+import reading.speed.improver.user.teacher.UsersAdapter
 
 class SignInUI(val usersAdapter: UsersAdapter) : AnkoComponent<SignIn> {
     lateinit var hintListView: TextView

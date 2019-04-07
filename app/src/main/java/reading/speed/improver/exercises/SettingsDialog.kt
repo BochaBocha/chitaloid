@@ -1,10 +1,9 @@
-package reading.speed.improver.exercises.settings.dialog
+package reading.speed.improver.exercises
 
 import android.content.DialogInterface
 import android.widget.ArrayAdapter
-import com.example.trofi.course_work.R
-import org.jetbrains.anko.*
 import reading.speed.improver.R
+import org.jetbrains.anko.*
 
 class SettingsDialog(ui: AnkoContext<ExerciseScreen>) {
 

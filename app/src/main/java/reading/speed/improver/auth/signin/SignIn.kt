@@ -1,10 +1,13 @@
-package reading.exercises.improver.auth
+package reading.speed.improver.auth.signin
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.example.trofi.course_work.pupil.PupilMainScreen
-import com.example.trofi.course_work.teacher.UsersAdapter;
+import androidx.appcompat.app.AppCompatActivity
+import org.jetbrains.anko.setContentView
+import reading.speed.improver.user.CurrentUser
+import reading.speed.improver.user.pupil.PupilMainScreen
+import reading.speed.improver.user.teacher.UsersAdapter
+import reading.speed.improver.utils.UsersDataHandler
 
 class SignIn : AppCompatActivity() {
 

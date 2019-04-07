@@ -1,4 +1,4 @@
-package com.example.trofi.course_work.utils
+package reading.speed.improver.utils
 
 enum class ValidationResult{
     SUCCESS,

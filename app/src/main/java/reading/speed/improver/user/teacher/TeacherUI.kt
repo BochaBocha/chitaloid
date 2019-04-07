@@ -1,7 +1,8 @@
-package com.example.trofi.course_work.teacher
+package reading.speed.improver.user.teacher
 
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
+
 
 class TeacherUI : AnkoComponent<TeacherMainScreen> {
     override fun createView(ui: AnkoContext<TeacherMainScreen>) = with(ui) {

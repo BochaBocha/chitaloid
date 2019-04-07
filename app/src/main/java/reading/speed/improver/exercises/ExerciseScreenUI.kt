@@ -1,11 +1,11 @@
-package com.example.trofi.course_work.exercises
+package reading.speed.improver.exercises
 
 import android.content.DialogInterface
 import android.view.Gravity
 import android.view.View
 import org.jetbrains.anko.*
 import org.jetbrains.anko.design.floatingActionButton
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class ExerciseScreenUI : AnkoComponent<ExerciseScreen> {
 

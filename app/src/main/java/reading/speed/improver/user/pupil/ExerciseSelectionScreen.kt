@@ -1,8 +1,9 @@
-package reading.speed.improver.pupil
+package reading.speed.improver.user.pupil
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import org.jetbrains.anko.setContentView
 
 class ExerciseSelectionScreen : AppCompatActivity() {
 

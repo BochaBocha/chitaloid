@@ -1,19 +1,22 @@
-package com.example.trofi.course_work.teacher
+package reading.speed.improver.user.teacher
 
+import android.os.Build
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ListView
 import android.widget.TextView
-import com.example.trofi.course_work.utils.ValidationResult
-import com.example.trofi.course_work.utils.isUserNameValid
+import androidx.annotation.RequiresApi
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onItemLongClick
 import org.jetbrains.anko.design.floatingActionButton
-import org.jetbrains.anko.sdk25.coroutines.onClick
-import org.jetbrains.anko.sdk25.coroutines.onItemLongClick
+import reading.speed.improver.utils.ValidationResult
+import reading.speed.improver.utils.isUserNameValid
 
 class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersManagement> {
     lateinit var hintListView: TextView
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun createView(ui: AnkoContext<UsersManagement>): View = with(ui) {
 
         return relativeLayout {
@@ -46,7 +49,6 @@ class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersMan
             }.lparams {
                 margin = dip(5)
             }
-
             floatingActionButton {
                 imageResource = android.R.drawable.ic_input_add
                 onClick {

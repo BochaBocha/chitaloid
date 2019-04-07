@@ -1,10 +1,10 @@
-package com.example.trofi.course_work.pupil
+package reading.speed.improver.user.pupil
 
 import android.view.Gravity
-import com.example.trofi.course_work.CommonStyle
-import com.example.trofi.course_work.CurrentUser
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
+import reading.speed.improver.user.CurrentUser
+
 
 class PupilMainScreenUI : AnkoComponent<PupilMainScreen> {
     override fun createView(ui: AnkoContext<PupilMainScreen>) = with(ui) {
@@ -24,6 +24,6 @@ class PupilMainScreenUI : AnkoComponent<PupilMainScreen> {
             button("Выйти из учетной записи") {
                 onClick { owner.finish() }
             }
-        }.applyRecursively(CommonStyle)
+        }
     }
 }

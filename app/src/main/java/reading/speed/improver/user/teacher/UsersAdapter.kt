@@ -1,9 +1,9 @@
-package com.example.trofi.course_work.teacher
+package reading.speed.improver.user.teacher
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.example.trofi.course_work.utils.UsersDataHandler
+import reading.speed.improver.utils.UsersDataHandler
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.linearLayout
 import org.jetbrains.anko.padding

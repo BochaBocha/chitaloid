@@ -1,7 +1,7 @@
-package com.example.trofi.course_work.teacher
+package reading.speed.improver.user.teacher
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import org.jetbrains.anko.setContentView
 

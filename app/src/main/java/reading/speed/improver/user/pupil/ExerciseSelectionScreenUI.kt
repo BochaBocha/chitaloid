@@ -1,10 +1,10 @@
-package com.example.trofi.course_work.pupil
+package reading.speed.improver.user.pupil
 
-import com.example.trofi.course_work.utils.UsersDataHandler
+import reading.speed.improver.utils.UsersDataHandler
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.button
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.verticalLayout
 
 class ExerciseSelectionScreenUI : AnkoComponent<ExerciseSelectionScreen> {

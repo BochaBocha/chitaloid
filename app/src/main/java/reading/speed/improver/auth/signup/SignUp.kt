@@ -1,9 +1,16 @@
-package com.example.trofi.course_work.auth
+package reading.speed.improver.auth.signup
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.example.trofi.course_work.pupil.PupilMainScreen
+import androidx.appcompat.app.AppCompatActivity
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.setContentView
+import org.jetbrains.anko.toast
+import reading.speed.improver.user.CurrentUser
+import reading.speed.improver.user.pupil.PupilMainScreen
+import reading.speed.improver.utils.UsersDataHandler
+import reading.speed.improver.utils.ValidationResult
+import reading.speed.improver.utils.isUserNameValid
 
 
 class SignUp : AppCompatActivity() {

@@ -1,10 +1,10 @@
-package com.example.trofi.course_work.pupil
+package reading.speed.improver.user.pupil
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.example.trofi.course_work.CurrentUser
+import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.setContentView
+import reading.speed.improver.user.CurrentUser
 
 class PupilMainScreen : AppCompatActivity() {
 

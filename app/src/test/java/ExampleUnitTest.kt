@@ -1,5 +1,3 @@
-package reading.exercises.improver
-
 import org.junit.Test
 
 import org.junit.Assert.*

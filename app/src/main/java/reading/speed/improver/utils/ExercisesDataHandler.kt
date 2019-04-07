@@ -1,8 +1,8 @@
-package com.example.trofi.course_work.utils
+package reading.speed.improver.utils
 
 import android.app.Application
 
-object ExercisesDataHandler {
+class ExercisesDataHandler {
     fun getWordsFromFile(app: Application, filename: String): MutableList<String?> {
         var words = emptyList<String?>().toMutableList()
         var tmp: String?

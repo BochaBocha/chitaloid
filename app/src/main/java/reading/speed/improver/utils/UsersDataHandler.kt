@@ -1,21 +1,20 @@
-package com.example.trofi.course_work.utils
+package reading.speed.improver.utils
 
 import android.os.Environment
-import android.support.v7.app.AppCompatActivity
-import com.example.trofi.course_work.exercises.Exercise1.Exercise1
-import com.example.trofi.course_work.exercises.Exercise2.Exercise2
-import com.example.trofi.course_work.exercises.Exercise3.Exercise3
-import com.example.trofi.course_work.exercises.Exercise4.Exercise4
+import androidx.appcompat.app.AppCompatActivity
 import java.io.*
+import reading.speed.improver.exercises.ui.ExerciseActivity
+
 
 object UsersDataHandler : AppCompatActivity() {
     val usersFilename: String = "available_users.txt"
     val exercises: HashMap<String, Class<*>> = hashMapOf(
-            "Слова" to Exercise1::class.java,
-            "Словосочетания" to Exercise2::class.java,
-            "Слова на время" to Exercise3::class.java,
-            "Перевернутый текст" to Exercise4::class.java
+            "Базовое упражнение" to ExerciseActivity::class.java
     )
+
+    fun getListOfExercises(): HashMap<String, Class<*>>{
+        return exercises
+    }
 
     fun getAllUsers(): List<String> {
         var users = emptyList<String>().toMutableList()

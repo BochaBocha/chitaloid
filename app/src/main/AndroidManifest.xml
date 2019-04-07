@@ -10,16 +10,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".exercises.EmptyExercise"
+                android:name=".exercises.ui.ExerciseActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
-                android:label="@string/title_activity_empty_exercise"
-                android:theme="@style/FullscreenTheme">
-        </activity>
-        <activity
-                android:name=".exercises.findWord.FindWord"
-                android:configChanges="orientation|keyboardHidden|screenSize"
-                android:label="@string/title_activity_find_word"
-                android:theme="@style/FullscreenTheme">
+                android:label="@string/title_activity_exercise_activiry"
+                android:theme="@style/FullscreenTheme"
+                android:screenOrientation="landscape">
         </activity>
         <activity android:name=".Chitaloid">
             <intent-filter>
@@ -27,6 +22,47 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".user.teacher.TeacherMainScreen"
+                android:label="Окно учителя"
+                android:parentActivityName=".Chitaloid">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="reading.speed.improver.Chitaloid"/>
+        </activity>
+        <activity
+                android:name=".auth.signin.SignIn"
+                android:label="Выбор учетной записи"
+                android:parentActivityName=".Chitaloid">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="reading.speed.improver.Chitaloid"/>
+        </activity>
+        <activity
+                android:name=".auth.signup.SignUp"
+                android:label="Создание учетной записи"
+                android:parentActivityName=".Chitaloid">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="reading.speed.improver.Chitaloid"/>
+        </activity>
+        <activity android:name=".user.pupil.PupilMainScreen"/>
+        <activity
+                android:name=".user.teacher.UsersManagement"
+                android:label="Управление аккаунтами"
+                android:parentActivityName=".user.teacher.TeacherMainScreen">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="reading.speed.improver.user.teacher.TeacherMainScreen"/>
+        </activity>
+        <activity
+                android:name=".user.pupil.ExerciseSelectionScreen"
+                android:label="Выбор упражнения"
+                android:parentActivityName=".user.pupil.PupilMainScreen">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="reading.speed.improver.user.pupil.PupilMainScreen"/>
         </activity>
     </application>
 
