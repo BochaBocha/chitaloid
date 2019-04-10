@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.setContentView
+import reading.speed.improver.repository.ChitaloidRepository
 import reading.speed.improver.user.CurrentUser
 
 class PupilMainScreen : AppCompatActivity() {
@@ -20,6 +21,7 @@ class PupilMainScreen : AppCompatActivity() {
 
     override fun finish(){
         super.finish()
-        CurrentUser.name = ""
+        ChitaloidRepository.getInstance(this).currentPupil = null
+//        CurrentUser.name = ""
     }
 }

@@ -8,7 +8,12 @@ import java.util.UUID;
 @Entity
 public class Pupil {
 
-    @PrimaryKey
-    public UUID id;
+    @PrimaryKey(autoGenerate = true)
+    public String _id;
     public String name;
+
+    public Pupil(String _id, String name){
+        this._id = _id;
+        this.name = name;
+    }
 }

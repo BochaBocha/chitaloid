@@ -8,6 +8,7 @@ import org.jetbrains.anko.dip
 import org.jetbrains.anko.linearLayout
 import org.jetbrains.anko.padding
 import org.jetbrains.anko.textView
+import reading.speed.improver.repository.ChitaloidRepository
 import java.util.*
 
 class UsersAdapter(var list: ArrayList<String> = ArrayList<String>()) : BaseAdapter() {
@@ -40,13 +41,15 @@ class UsersAdapter(var list: ArrayList<String> = ArrayList<String>()) : BaseAdap
     }
 
     fun add(text: String) {
-        UsersDataHandler.addUser(text)
+        ChitaloidRepository.getInstance().addPupil(text)
+        //UsersDataHandler.addUser(text)
         list.add(list.size, text)
         notifyDataSetChanged()
     }
 
     fun delete(i:Int) {
-        UsersDataHandler.deleteUser(list.elementAt(i))
+        // todo: fix it
+       // UsersDataHandler.deleteUser(list.elementAt(i))
         list.removeAt(i)
         notifyDataSetChanged()
     }

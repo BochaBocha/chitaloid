@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.setContentView
 import org.jetbrains.anko.toast
+import reading.speed.improver.repository.ChitaloidRepository
 import reading.speed.improver.user.CurrentUser
 import reading.speed.improver.user.pupil.PupilMainScreen
 import reading.speed.improver.utils.UsersDataHandler
@@ -33,7 +34,9 @@ class SignUp : AppCompatActivity() {
         }
 
         UsersDataHandler.addUser(name)
-        CurrentUser.name = name.toString()
+        val chitaloidRepository : ChitaloidRepository = ChitaloidRepository.getInstance()
+       chitaloidRepository.addPupil(name.toString())
+        chitaloidRepository.currentPupil.name = name.toString()
         val intent = Intent(this, PupilMainScreen::class.java)
         startActivity(intent)
         finish()
