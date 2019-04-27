@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3">
+
+<TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+            android:text="TextView"
+            android:background="@drawable/cell_border"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_1"/>
+    <TextView
+            android:text="TextView"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_2"/>
+    <TextView
+            android:text="TextView"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_3"/>
+</TableRow>
+<TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+            android:text="TextView"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_1"/>
+    <TextView
+            android:text="TextView"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_2"/>
+    <TextView
+            android:text="TextView"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_3"/>
+</TableRow>
+<TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+            android:text="TextView"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_1"/>
+    <TextView
+            android:text="TextView"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_2"/>
+    <TextView
+            android:text="TextView"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_3"/>
+</TableRow>
+</TableLayout>

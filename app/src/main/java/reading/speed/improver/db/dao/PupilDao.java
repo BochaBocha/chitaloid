@@ -8,11 +8,11 @@ import java.util.List;
 @Dao
 public interface PupilDao {
 
-    @Query("SELECT * FROM pupil")
+    @Query("SELECT * FROM Pupil")
     List<Pupil> getAll();
 
-    @Query("SELECT * FROM pupil WHERE _id = :_id")
-    Pupil getById(String _id);
+    @Query("SELECT * FROM Pupil WHERE _id = :id")
+    Pupil getById(String id);
 
     @Insert
     void insert(Pupil pupil);

@@ -13,8 +13,7 @@
                 android:name=".exercises.ui.ExerciseActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:label="@string/title_activity_exercise_activiry"
-                android:theme="@style/FullscreenTheme"
-                android:screenOrientation="landscape">
+                android:theme="@style/FullscreenTheme">
         </activity>
         <activity android:name=".Chitaloid">
             <intent-filter>

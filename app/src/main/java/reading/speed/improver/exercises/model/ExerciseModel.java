@@ -1,18 +1,31 @@
 package reading.speed.improver.exercises.model;
 
+import androidx.lifecycle.MutableLiveData;
+import reading.speed.improver.exercises.components.stopwatch.StopwatchObserver;
+import reading.speed.improver.exercises.components.stopwatch.Stopwatch;
+
 import java.util.UUID;
 
-public class ExerciseModel {
+public class ExerciseModel  implements StopwatchObserver {
     private UUID id;
     private String name;
+    private String currentWord;
+    private Stopwatch stopwatch;
     private double speed;
     private double textSize;
 
-    public ExerciseModel(){
+    private MutableLiveData<Integer> currentSeconds;
+
+    public ExerciseModel() {
         id = UUID.randomUUID();
-        name= "Найди слово";
+        name = "Найди слово";
         speed = 1;
         textSize = 1;
+        currentSeconds = new MutableLiveData<>();
+        currentSeconds.setValue(0);
+        stopwatch = new Stopwatch();
+        stopwatch.registerObserver(this);
+        stopwatch.start();
     }
 
     public String getName() {
@@ -23,11 +36,12 @@ public class ExerciseModel {
         this.name = name;
     }
 
-    public UUID getId() {
-        return id;
+    public MutableLiveData<Integer> getCurrentSeconds() {
+        return currentSeconds;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    @Override
+    public void update(int seconds) {
+        this.currentSeconds.setValue(seconds);
     }
 }

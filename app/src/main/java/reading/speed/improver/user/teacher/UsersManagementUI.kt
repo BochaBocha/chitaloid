@@ -11,6 +11,7 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.sdk27.coroutines.onItemLongClick
 import org.jetbrains.anko.design.floatingActionButton
+import reading.speed.improver.user.pupil.Pupil
 import reading.speed.improver.utils.ValidationResult
 import reading.speed.improver.utils.isUserNameValid
 
@@ -35,10 +36,10 @@ class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersMan
                         val options = listOf("Посмотреть статистику", "Очистить статистику", "Удалить")
                         selector("Опции", options) { DialogInterface, j ->
                             if (j == 2) {
-                                var user = adapter.getItem(i)
+                                val pupil = adapter.getItem(i)
                                 usersAdapter?.delete(i)
                                 showHideHintListView(this@listView)
-                                longToast("Пользователь ${user} был удален")
+                                longToast("Пользователь был удален")
                             } else {
                                 longToast("На данный момент эта функция находится в разработке")
                             }
@@ -94,13 +95,14 @@ class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersMan
             showHideHintListView(usersList!!)
         }.apply {
             layoutParams = FrameLayout.LayoutParams(matchParent, matchParent)
-                    .apply {
-                        leftMargin = dip(5)
-                        rightMargin = dip(5)
-                    }
+                .apply {
+                    leftMargin = dip(5)
+                    rightMargin = dip(5)
+                }
         }
 
     }
+
     fun getTotalListItems(list: ListView?) = list?.adapter?.count ?: 0
 
     fun showHideHintListView(listView: ListView) {

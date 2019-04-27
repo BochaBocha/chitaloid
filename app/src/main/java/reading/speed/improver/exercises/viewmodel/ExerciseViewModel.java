@@ -7,23 +7,17 @@ import org.jetbrains.annotations.NotNull;
 import reading.speed.improver.exercises.model.ExerciseModel;
 
 public class ExerciseViewModel extends AndroidViewModel {
-
-    private MutableLiveData<ExerciseModel> exerciseModelLiveData;
+    private MutableLiveData<Integer> currentSeconds;
+    private ExerciseModel exerciseModel;
 
     public ExerciseViewModel(@NotNull Application application) {
         super(application);
+        exerciseModel = new ExerciseModel();
+        currentSeconds = exerciseModel.getCurrentSeconds();
     }
 
-    public MutableLiveData<ExerciseModel> getExerciseModel() {
-        if (exerciseModelLiveData == null) {
-            exerciseModelLiveData = new MutableLiveData<>();
-            createExerciseModel();
-        }
-        return exerciseModelLiveData;
-    }
-
-    private void createExerciseModel() {
-        exerciseModelLiveData.setValue(new ExerciseModel());
+    public MutableLiveData<Integer> getCurrentSeconds() {
+        return currentSeconds;
     }
 
     void doAction() {
@@ -31,12 +25,6 @@ public class ExerciseViewModel extends AndroidViewModel {
         // userLiveData.
     }
 
-    /*
-    This method will be called when this ViewModel is no longer used and will be destroyed.
-
-    It is useful when ViewModel observes some data and you need to clear this
-    subscription to prevent a leak of this ViewModel.
-  */
     public void onCleared() {
         super.onCleared();
     }

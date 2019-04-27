@@ -14,6 +14,7 @@ class Chitaloid : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val repository = ChitaloidRepository.getInstance()
+        repository.init(this)
             WelcomeUI().setContentView(this)
         }
         fun startSignIn(){

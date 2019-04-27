@@ -1,4 +1,4 @@
-package reading.speed.improver.repository;
+package reading.speed.improver.db;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,11 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import androidx.room.Room;
-import reading.speed.improver.db.AppDatabase;
 
 public class DatabaseCopier {
     private static final String TAG = DatabaseCopier.class.getSimpleName();
-    private final String DATABASE_NAME = "chitaloid.db";
 
     private  Context appContext;
 
@@ -21,7 +19,7 @@ public class DatabaseCopier {
     }
 
     public AppDatabase getRoomDatabase() {
-        //call method that check if database not exists and copy prepopulated file from assets
+        String DATABASE_NAME = "chitaloid.db";
         copyAttachedDatabase(appContext, DATABASE_NAME);
         return Room.databaseBuilder(appContext,
                 AppDatabase.class, DATABASE_NAME)

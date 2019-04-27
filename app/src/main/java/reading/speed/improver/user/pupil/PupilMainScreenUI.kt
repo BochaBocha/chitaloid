@@ -4,7 +4,6 @@ import android.view.Gravity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import reading.speed.improver.repository.ChitaloidRepository
-import reading.speed.improver.user.CurrentUser
 
 
 class PupilMainScreenUI : AnkoComponent<PupilMainScreen> {

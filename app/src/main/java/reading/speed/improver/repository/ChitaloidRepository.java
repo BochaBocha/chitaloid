@@ -2,54 +2,50 @@ package reading.speed.improver.repository;
 
 import android.content.Context;
 import reading.speed.improver.db.AppDatabase;
+import reading.speed.improver.db.DatabaseCopier;
 import reading.speed.improver.user.pupil.Pupil;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 public class ChitaloidRepository {
     private static final ChitaloidRepository ourInstance = new ChitaloidRepository();
-    private static Context appContext;
-
-    private Pupil currentPupil;
     private AppDatabase mAppDataBase;
+    private PupilsRepository pupilsRepository;
 
-    public Pupil getCurrentPupil() {
-        return currentPupil;
-    }
-
-    public void setCurrentPupil(Pupil currentPupil) {
-        this.currentPupil = currentPupil;
-    }
-
-
-
-    public static ChitaloidRepository getInstance(Context context) {
-        appContext = context;
-        return ourInstance;
-    }
     public static ChitaloidRepository getInstance() {
         return ourInstance;
     }
 
-    private ChitaloidRepository() {
+    public void init(Context context) {
+        Context appContext = context;
         DatabaseCopier databaseCopier = new DatabaseCopier(appContext);
         mAppDataBase = databaseCopier.getRoomDatabase();
-        currentPupil = null;
+        pupilsRepository = new PupilsRepository(mAppDataBase);
     }
 
-    public void addPupil(String name){
-        Pupil pupil = new Pupil(UUID.randomUUID().toString(), name);
-        mAppDataBase.getPupilDao().insert(pupil);
+    public Pupil getCurrentPupil() {
+        return pupilsRepository.getCurrentPupil();
     }
 
-    public List<Pupil> getPupils(){
-        return mAppDataBase.getPupilDao().getAll();
+    public void setCurrentPupil(Pupil pupil) {
+        pupilsRepository.setCurrentPupil(pupil);
     }
 
-    public void deletePupil(String name){
+    public Pupil createPupil(String name) {
+        return new Pupil(UUID.randomUUID().toString(), name);
+    }
+
+    public void addPupil(Pupil pupil) {
+        pupilsRepository.addPupil(pupil);
+    }
+
+    public List<Pupil> getPupils() throws ExecutionException, InterruptedException {
+        return pupilsRepository.getPupils();
+    }
+
+    public void deletePupil(String name) {
         // todo: implement it
     }
-
-
 }

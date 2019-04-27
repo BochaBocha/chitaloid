@@ -1,4 +1,4 @@
-package reading.speed.improver.materials;
+package reading.speed.improver.exercises.materials;
 
 
 import androidx.room.Entity;
