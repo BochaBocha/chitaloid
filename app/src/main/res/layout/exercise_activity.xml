@@ -12,84 +12,80 @@
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-    <TableLayout
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/fullscreen_content">
-
-        <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+            android:layout_height="match_parent" android:id="@+id/fullscreen_content" android:orientation="vertical">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <Button
                     android:text="Меню"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/menu_button"
                     style="@style/Widget.AppCompat.Button.Borderless"/>
-            <androidx.constraintlayout.widget.Guideline
-                    android:orientation="horizontal"
-                    android:layout_width="224dp"
-                    android:layout_height="35dp" android:id="@+id/guideline"/>
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/stopwatch_view"/>
-        </TableRow>
-        <TableRow android:layout_width="match_parent" android:layout_height="199dp"
-                  android:gravity="center|center_horizontal">
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/stopwatch_view" android:text="Seconds"/>
+        </LinearLayout>
+        <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/schulte_table_3x3"
+                android:gravity="center">
 
-                <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
-                    <TextView
-                            android:text="TextView"
-                            android:background="@drawable/cell_border"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_1"/>
-                    <TextView
-                            android:text="TextView"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_2"/>
-                    <TextView
-                            android:text="TextView"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_3"/>
-                </TableRow>
-                <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
-                    <TextView
-                            android:text="TextView"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_1"/>
-                    <TextView
-                            android:text="TextView"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_2"/>
-                    <TextView
-                            android:text="TextView"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_3"/>
-                </TableRow>
-                <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
-                    <TextView
-                            android:text="TextView"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_1"/>
-                    <TextView
-                            android:text="TextView"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_2"/>
-                    <TextView
-                            android:text="TextView"
-                            android:padding="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_3"/>
-                </TableRow>
-            </TableLayout>
-        </TableRow>
-    </TableLayout>
+            <TableRow android:layout_width="wrap_content" android:layout_height="match_parent" android:gravity="center">
+                <TextView
+                        android:text="TextView"
+                        android:background="@drawable/cell_border"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_1"/>
+                <TextView
+                        android:text="TextView"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_2"/>
+                <TextView
+                        android:text="TextView"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_1_3"/>
+            </TableRow>
+            <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center">
+                <TextView
+                        android:text="TextView"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_1"/>
+                <TextView
+                        android:text="TextView"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_2"/>
+                <TextView
+                        android:text="TextView"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_2_3"/>
+            </TableRow>
+            <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center">
+                <TextView
+                        android:text="TextView"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_1"/>
+                <TextView
+                        android:text="TextView"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_2"/>
+                <TextView
+                        android:text="TextView"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/schulte_table_3x3_3_3"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
 
 </FrameLayout>

@@ -1,12 +1,14 @@
 package reading.speed.improver.utils
 
-enum class ValidationResult{
+import reading.speed.improver.repository.ChitaloidRepository
+
+enum class ValidationResult {
     SUCCESS,
     TO_SHORT,
     ALREADY_TAKEN
 }
 
-fun isUserNameValid(name : String): ValidationResult {
+fun isUserNameValid(name: String): ValidationResult {
 
     if (name.isNullOrEmpty() || name.isNullOrBlank()) {
         return ValidationResult.TO_SHORT
@@ -15,7 +17,7 @@ fun isUserNameValid(name : String): ValidationResult {
         return ValidationResult.TO_SHORT
     }
 
-    if (UsersDataHandler.isUserExists(name)) {
+    if (ChitaloidRepository.getInstance().getPupilByName(name) == null) {
         return ValidationResult.ALREADY_TAKEN
     }
     return ValidationResult.SUCCESS

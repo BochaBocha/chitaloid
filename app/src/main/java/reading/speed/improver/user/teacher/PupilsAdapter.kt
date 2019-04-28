@@ -7,15 +7,15 @@ import org.jetbrains.anko.dip
 import org.jetbrains.anko.linearLayout
 import org.jetbrains.anko.padding
 import org.jetbrains.anko.textView
+import reading.speed.improver.repository.ChitaloidRepository
 import reading.speed.improver.service.ChitaloidService
 import reading.speed.improver.user.pupil.Pupil
 import java.util.*
 
-class UsersAdapter(var list: ArrayList<Pupil> = ArrayList<Pupil>()) : BaseAdapter() {
+class PupilsAdapter(var list: ArrayList<Pupil> = ArrayList()) : BaseAdapter() {
     override fun getView(i: Int, v: View?, parent: ViewGroup?): View {
         return with(parent!!.context) {
             var taskNum: Int = i + 1
-
             linearLayout {
                 textView {
                     text = list.get(i).name
@@ -40,6 +40,10 @@ class UsersAdapter(var list: ArrayList<Pupil> = ArrayList<Pupil>()) : BaseAdapte
         return 0L
     }
 
+    fun getPupil(position: Int): Pupil {
+        return list[position]
+    }
+
     fun add(text: String) {
         val chitaloidService: ChitaloidService = ChitaloidService()
         val pupil: Pupil = chitaloidService.createPupil(text)
@@ -49,8 +53,7 @@ class UsersAdapter(var list: ArrayList<Pupil> = ArrayList<Pupil>()) : BaseAdapte
     }
 
     fun delete(i: Int) {
-        // todo: fix it
-        // UsersDataHandler.deleteUser(list.elementAt(i))
+        ChitaloidRepository.getInstance().deletePupil(list[i])
         list.removeAt(i)
         notifyDataSetChanged()
     }

@@ -2,19 +2,21 @@ package reading.speed.improver.db;
 
 import android.content.Context;
 import android.util.Log;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 import androidx.room.Room;
 
 public class DatabaseCopier {
     private static final String TAG = DatabaseCopier.class.getSimpleName();
 
-    private  Context appContext;
+    private Context appContext;
 
-    public DatabaseCopier(Context appContext){
+    public DatabaseCopier(Context appContext) {
         this.appContext = appContext;
     }
 
@@ -54,8 +56,7 @@ public class DatabaseCopier {
             output.flush();
             output.close();
             inputStream.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             Log.d(TAG, "Failed to open file", e);
             e.printStackTrace();
         }

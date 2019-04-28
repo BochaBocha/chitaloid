@@ -13,7 +13,7 @@
                 android:name=".exercises.ui.ExerciseActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:label="@string/title_activity_exercise_activiry"
-                android:theme="@style/FullscreenTheme">
+        >
         </activity>
         <activity android:name=".Chitaloid">
             <intent-filter>
@@ -48,7 +48,7 @@
         </activity>
         <activity android:name=".user.pupil.PupilMainScreen"/>
         <activity
-                android:name=".user.teacher.UsersManagement"
+                android:name=".user.teacher.PupilsManagement"
                 android:label="Управление аккаунтами"
                 android:parentActivityName=".user.teacher.TeacherMainScreen">
             <meta-data

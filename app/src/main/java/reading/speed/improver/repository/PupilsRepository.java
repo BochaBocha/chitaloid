@@ -18,7 +18,6 @@ public class PupilsRepository {
         currentPupil = null;
     }
 
-
     Pupil getCurrentPupil() {
         return currentPupil;
     }
@@ -27,11 +26,11 @@ public class PupilsRepository {
         this.currentPupil = currentPupil;
     }
 
-    public Pupil createPupil(String name){
+    public Pupil createPupil(String name) {
         return new Pupil(UUID.randomUUID().toString(), name);
     }
 
-    void addPupil(Pupil pupil) {
+    void addPupil(final Pupil pupil) {
         new insertAsyncTask(mAppDataBase.getPupilDao()).execute(pupil);
     }
 
@@ -40,8 +39,12 @@ public class PupilsRepository {
         return new getAllAsyncTask(mAppDataBase.getPupilDao()).execute().get();
     }
 
-    public void deletePupil(String name) {
-        // todo: implement it
+    public void deletePupil(final Pupil pupil) {
+        new deleteAsyncTask(mAppDataBase.getPupilDao()).execute(pupil);
+    }
+
+    public Pupil getPupilByName(final String name) throws ExecutionException, InterruptedException {
+        return new getAsyncTask(mAppDataBase.getPupilDao()).execute(name).get();
     }
 
 
@@ -49,7 +52,7 @@ public class PupilsRepository {
 
         private PupilDao mAsyncTaskDao;
 
-        insertAsyncTask(PupilDao dao){
+        insertAsyncTask(PupilDao dao) {
             mAsyncTaskDao = dao;
         }
 
@@ -60,18 +63,46 @@ public class PupilsRepository {
         }
     }
 
-    private static class getAllAsyncTask extends AsyncTask<Void, Void, List<Pupil>>{
+    private static class deleteAsyncTask extends AsyncTask<Pupil, Void, Void> {
 
         private PupilDao mAsyncTaskDao;
 
-        getAllAsyncTask(PupilDao dao){
+        deleteAsyncTask(PupilDao dao) {
             mAsyncTaskDao = dao;
         }
 
+        @Override
+        protected Void doInBackground(final Pupil... pupils) {
+            mAsyncTaskDao.delete(pupils[0]);
+            return null;
+        }
+    }
+
+    private static class getAllAsyncTask extends AsyncTask<Void, Void, List<Pupil>> {
+
+        private PupilDao mAsyncTaskDao;
+
+        getAllAsyncTask(PupilDao dao) {
+            mAsyncTaskDao = dao;
+        }
 
         @Override
         protected List<Pupil> doInBackground(Void... voids) {
             return mAsyncTaskDao.getAll();
+        }
+    }
+
+    private static class getAsyncTask extends AsyncTask<String, Void, Pupil> {
+
+        private PupilDao mAsyncTaskDao;
+
+        getAsyncTask(PupilDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Pupil doInBackground(String... strings) {
+            return mAsyncTaskDao.getByName(strings[0]);
         }
     }
 }

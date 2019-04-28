@@ -6,6 +6,7 @@ import reading.speed.improver.db.DatabaseCopier;
 import reading.speed.improver.user.pupil.Pupil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
@@ -13,6 +14,7 @@ public class ChitaloidRepository {
     private static final ChitaloidRepository ourInstance = new ChitaloidRepository();
     private AppDatabase mAppDataBase;
     private PupilsRepository pupilsRepository;
+    private ExercisesRepository exercisesRepository;
 
     public static ChitaloidRepository getInstance() {
         return ourInstance;
@@ -23,6 +25,7 @@ public class ChitaloidRepository {
         DatabaseCopier databaseCopier = new DatabaseCopier(appContext);
         mAppDataBase = databaseCopier.getRoomDatabase();
         pupilsRepository = new PupilsRepository(mAppDataBase);
+        exercisesRepository = new ExercisesRepository(mAppDataBase);
     }
 
     public Pupil getCurrentPupil() {
@@ -45,7 +48,15 @@ public class ChitaloidRepository {
         return pupilsRepository.getPupils();
     }
 
-    public void deletePupil(String name) {
-        // todo: implement it
+    public void deletePupil(Pupil pupil) {
+        pupilsRepository.deletePupil(pupil);
+    }
+
+    public Pupil getPupilByName(String name) throws ExecutionException, InterruptedException {
+        return pupilsRepository.getPupilByName(name);
+    }
+
+    public Map<String, Class> getExercises(){
+        return exercisesRepository.getExercises();
     }
 }

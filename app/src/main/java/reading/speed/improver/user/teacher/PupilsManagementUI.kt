@@ -11,17 +11,16 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.sdk27.coroutines.onItemLongClick
 import org.jetbrains.anko.design.floatingActionButton
-import reading.speed.improver.user.pupil.Pupil
 import reading.speed.improver.utils.ValidationResult
 import reading.speed.improver.utils.isUserNameValid
 
-class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersManagement> {
+class PupilsManagementUI(val pupilsAdapter: PupilsAdapter) : AnkoComponent<PupilsManagement> {
     lateinit var hintListView: TextView
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    override fun createView(ui: AnkoContext<UsersManagement>): View = with(ui) {
+    override fun createView(ui: AnkoContext<PupilsManagement>): View = with(ui) {
 
         return relativeLayout {
-            var usersList: ListView? = null
+            var pupilsList: ListView? = null
             hintListView = textView("Нет зарегистрированных пользователей") {
                 textSize = 20f
                 visibility = View.GONE
@@ -30,14 +29,14 @@ class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersMan
             }
 
             verticalLayout {
-                usersList = listView {
-                    adapter = usersAdapter
+                pupilsList = listView {
+                    adapter = pupilsAdapter
                     onItemLongClick { adapterView, view, i, l ->
                         val options = listOf("Посмотреть статистику", "Очистить статистику", "Удалить")
                         selector("Опции", options) { DialogInterface, j ->
                             if (j == 2) {
                                 val pupil = adapter.getItem(i)
-                                usersAdapter?.delete(i)
+                                pupilsAdapter?.delete(i)
                                 showHideHintListView(this@listView)
                                 longToast("Пользователь был удален")
                             } else {
@@ -53,15 +52,13 @@ class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersMan
             floatingActionButton {
                 imageResource = android.R.drawable.ic_input_add
                 onClick {
-                    val adapter = usersList?.adapter as UsersAdapter
+                    val adapter = pupilsList?.adapter as PupilsAdapter
                     alert {
                         title = "Напишите имя нового пользователя"
                         customView {
                             verticalLayout {
                                 toolbar {
                                     lparams(width = matchParent, height = wrapContent)
-
-                                    //title = "Напишите имя нового пользователя"
                                 }
                                 val task = editText {
                                     hint = "Имя пользователя"
@@ -77,7 +74,7 @@ class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersMan
                                         }
                                         ValidationResult.SUCCESS -> {
                                             adapter.add(task.text.toString())
-                                            showHideHintListView(usersList!!)
+                                            showHideHintListView(pupilsList!!)
                                         }
                                     }
                                 }
@@ -92,7 +89,7 @@ class UsersManagementUI(val usersAdapter: UsersAdapter) : AnkoComponent<UsersMan
                 alignParentRight()
                 gravity = Gravity.BOTTOM or Gravity.END
             }
-            showHideHintListView(usersList!!)
+            showHideHintListView(pupilsList!!)
         }.apply {
             layoutParams = FrameLayout.LayoutParams(matchParent, matchParent)
                 .apply {

@@ -12,7 +12,7 @@ class TeacherMainScreen : AppCompatActivity() {
         TeacherUI().setContentView(this)
     }
     fun startUsersManagement() {
-        val intent = Intent(this, UsersManagement::class.java)
+        val intent = Intent(this, PupilsManagement::class.java)
         startActivity(intent)
     }
 }

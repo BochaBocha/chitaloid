@@ -23,4 +23,7 @@ public interface PupilDao {
     @Delete
     void delete(Pupil pupil);
 
+    @Query("SELECT * FROM Pupil WHERE name = :name")
+    Pupil getByName(String name);
+
 }

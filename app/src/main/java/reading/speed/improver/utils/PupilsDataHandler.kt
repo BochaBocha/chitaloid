@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import java.io.*
 import reading.speed.improver.exercises.ui.ExerciseActivity
 
-
-object UsersDataHandler : AppCompatActivity() {
+@Deprecated("Uses .txt file for storing pupils")
+class PupilsDataHandler : AppCompatActivity() {
     val usersFilename: String = "available_users.txt"
     val exercises: HashMap<String, Class<*>> = hashMapOf(
             "Базовое упражнение" to ExerciseActivity::class.java

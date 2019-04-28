@@ -5,15 +5,16 @@ import android.widget.ListView
 import android.widget.TextView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onItemClick
-import reading.speed.improver.user.teacher.UsersAdapter
+import reading.speed.improver.user.pupil.Pupil
+import reading.speed.improver.user.teacher.PupilsAdapter
 
-class SignInUI(val usersAdapter: UsersAdapter) : AnkoComponent<SignIn> {
+class SignInUI(val pupilsAdapter: PupilsAdapter) : AnkoComponent<SignIn> {
     lateinit var hintListView: TextView
 
     override fun createView(ui: AnkoContext<SignIn>): View = with(ui) {
 
         return relativeLayout {
-            var usersList: ListView? = null
+            var pupilsList: ListView? = null
 
              hintListView = textView("Нет зарегистрированных пользователей") {
                 textSize = 20f
@@ -22,14 +23,15 @@ class SignInUI(val usersAdapter: UsersAdapter) : AnkoComponent<SignIn> {
                 centerInParent()
             }
 
-
             verticalLayout {
-                usersList = listView {
-                    adapter = usersAdapter
+                pupilsList = listView {
+                    adapter = pupilsAdapter
                     onItemClick { _, view, i, l ->
-                        var user = adapter.getItem(i)
-                        alert("Выбрать пользователя ${user}?", "Подтверждение"){
-                            yesButton{owner.completeSignIn(adapter.getItem(i).toString())}
+                        var pupil = adapter.getItem(i)
+                        alert("Выбрать пользователя ${pupil}?", "Подтверждение"){
+                            yesButton{
+                                var pupil : Any = adapter.getItem(i)
+                                owner.completeSignIn(pupil as Pupil)}
                             noButton{}
                         }.show()
                     }
@@ -37,7 +39,7 @@ class SignInUI(val usersAdapter: UsersAdapter) : AnkoComponent<SignIn> {
             }.lparams {
                 margin = dip(5)
             }
-            showHideHintListView(usersList!!)
+            showHideHintListView(pupilsList!!)
         }
 
     }
