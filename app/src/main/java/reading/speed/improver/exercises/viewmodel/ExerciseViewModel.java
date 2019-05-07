@@ -17,23 +17,39 @@ public class ExerciseViewModel extends AndroidViewModel {
     public ExerciseViewModel(@NotNull Application application) {
         super(application);
         exerciseModel = new ExerciseModel();
-        currentSeconds = exerciseModel.getCurrentSeconds();
+        currentSeconds = exerciseModel.getElapsedSeconds();
     }
 
     public MutableLiveData<Integer> getCurrentSeconds() {
         return currentSeconds;
     }
 
-    void doAction() {
-        // depending on the action, do necessary business logic calls and update the
-        // userLiveData.
+
+    public boolean isCurrentNumFound(int number) {
+        return exerciseModel.isCurrentNumFound(number);
     }
 
-    public int[][] getSchulteTable(){
+    public void increaseCurrentNum(){
+        exerciseModel.increaseCurrentNum();
+    }
+
+    public MutableLiveData<Integer[][]> getSchulteTable(){
        return exerciseModel.getSchulteTable();
     }
 
     public void onCleared() {
         super.onCleared();
+    }
+
+    public void pauseStopwatch(){
+        exerciseModel.pauseStopwatch();
+    }
+
+    public void startStopwatch(){
+        exerciseModel.startStopwatch();
+    }
+
+    public void restartExercise(){
+        exerciseModel.restartExercise();
     }
 }

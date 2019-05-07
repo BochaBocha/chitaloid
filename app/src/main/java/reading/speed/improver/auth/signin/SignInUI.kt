@@ -28,7 +28,7 @@ class SignInUI(val pupilsAdapter: PupilsAdapter) : AnkoComponent<SignIn> {
                     adapter = pupilsAdapter
                     onItemClick { _, view, i, l ->
                         var pupil = adapter.getItem(i)
-                        alert("Выбрать пользователя ${pupil}?", "Подтверждение"){
+                        alert("Выбрать пользователя ${(pupil as Pupil).name}?", "Подтверждение"){
                             yesButton{
                                 var pupil : Any = adapter.getItem(i)
                                 owner.completeSignIn(pupil as Pupil)}

@@ -17,7 +17,7 @@ fun isUserNameValid(name: String): ValidationResult {
         return ValidationResult.TO_SHORT
     }
 
-    if (ChitaloidRepository.getInstance().getPupilByName(name) == null) {
+    if (ChitaloidRepository.getInstance().getPupilByName(name) != null) {
         return ValidationResult.ALREADY_TAKEN
     }
     return ValidationResult.SUCCESS

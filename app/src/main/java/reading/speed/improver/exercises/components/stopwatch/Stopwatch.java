@@ -10,6 +10,7 @@ import java.util.List;
 public class Stopwatch implements ObservableStopwatch {
     private long millisecondTime, startTime, timeBuff, updateTime = 0L;
     private int seconds = 0;
+    private int minutes = 0;
     Handler handler;
     private List<StopwatchObserver> stopwatchObservers;
 
@@ -46,7 +47,7 @@ public class Stopwatch implements ObservableStopwatch {
 
             updateTime = timeBuff + millisecondTime;
 
-            seconds = (int) (updateTime / 1000) % 60;
+            seconds = (int) (updateTime / 1000);
             notifyObservers();
 
             handler.postDelayed(this, 0);

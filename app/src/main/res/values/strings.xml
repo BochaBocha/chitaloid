@@ -4,7 +4,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="dummy_text_view">DUMMY\nCONTENT</string>
-    <string name="title_activity_exercise_activiry">ExerciseActiviry</string>
     <string name="title_activity_exercise_settings">Параметры упражнения</string>
 
     <!-- Strings related to Settings -->
