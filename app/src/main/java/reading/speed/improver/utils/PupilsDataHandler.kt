@@ -3,13 +3,13 @@ package reading.speed.improver.utils
 import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
 import java.io.*
-import reading.speed.improver.exercises.ui.ExerciseActivity
+import reading.speed.improver.exercises.schulte.table.ui.SchulteExerciseActivity
 
 @Deprecated("Uses .txt file for storing pupils")
 class PupilsDataHandler : AppCompatActivity() {
     val usersFilename: String = "available_users.txt"
     val exercises: HashMap<String, Class<*>> = hashMapOf(
-            "Базовое упражнение" to ExerciseActivity::class.java
+            "Базовое упражнение" to SchulteExerciseActivity::class.java
     )
 
     fun getListOfExercises(): HashMap<String, Class<*>>{

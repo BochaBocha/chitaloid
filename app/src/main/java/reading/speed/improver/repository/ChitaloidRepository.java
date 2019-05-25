@@ -3,6 +3,8 @@ package reading.speed.improver.repository;
 import android.content.Context;
 import reading.speed.improver.db.AppDatabase;
 import reading.speed.improver.db.DatabaseCopier;
+import reading.speed.improver.exercises.emerging.text.EmergingTextExercise;
+import reading.speed.improver.exercises.schulte.table.SchulteExercise;
 import reading.speed.improver.user.pupil.Pupil;
 
 import java.util.List;
@@ -56,7 +58,28 @@ public class ChitaloidRepository {
         return pupilsRepository.getPupilByName(name);
     }
 
-    public Map<String, Class> getExercises(){
+    public Map<String, Exercises> getExercises() {
         return exercisesRepository.getExercises();
+    }
+
+
+    public Class getExerciseActivity(Exercises exercise) {
+        return exercisesRepository.getExerciseActivity(exercise);
+    }
+
+    public void createExerciseModel(Exercises exercise) {
+        exercisesRepository.createExerciseModel(exercise);
+    }
+
+    public void invalidateCurrentExerciseModel() {
+        exercisesRepository.invalidateCurrentExerciseModel();
+    }
+
+    public SchulteExercise getSchulteExerciseModel() {
+        return exercisesRepository.getSchulteExercise();
+    }
+
+    public EmergingTextExercise getEmergingTextExerciseModel() {
+        return exercisesRepository.getEmergingTextExercise();
     }
 }

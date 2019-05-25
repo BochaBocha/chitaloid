@@ -7,7 +7,7 @@ import org.jetbrains.anko.setContentView
 import reading.speed.improver.repository.ChitaloidRepository
 import reading.speed.improver.user.pupil.Pupil
 import reading.speed.improver.user.pupil.PupilMainScreen
-import reading.speed.improver.user.teacher.PupilsAdapter
+import reading.speed.improver.user.pupil.management.PupilsAdapter
 
 class SignIn : AppCompatActivity() {
     var pupils: List<Pupil> = emptyList()

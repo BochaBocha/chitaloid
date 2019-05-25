@@ -1,4 +1,4 @@
-package reading.speed.improver.user.teacher
+package reading.speed.improver.user.pupil.management
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package reading.speed.improver.user.teacher
+package reading.speed.improver.user.pupil.management
 
 import android.view.View
 import android.view.ViewGroup

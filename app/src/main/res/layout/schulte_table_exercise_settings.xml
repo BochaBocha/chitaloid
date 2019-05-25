@@ -5,25 +5,29 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content">
     <TextView
-            android:text="Настройки"
+            android:text="@string/exercise_settings_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/settings_label"/>
+            android:layout_height="wrap_content" android:id="@+id/settings_label"
+            android:gravity="center"
+    />
     <TextView
-            android:text="Размер шрифта"
+            android:text="@string/exercise_settings_font_size_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/font_size_label"/>
     <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/font_size_selected"/>
+            android:layout_height="wrap_content" android:id="@+id/font_size_selected"
+            android:gravity="center"
+    />
     <SeekBar
-            style="@android:style/Widget.Material.Light.SeekBar"
+            style="@android:style/Widget.DeviceDefault.SeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="10"
             android:progress="3"
             android:id="@+id/seekBar_font_size"/>
     <Button
-            android:text="ОК"
+            android:text="@string/ok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/button_ok"/>
 </LinearLayout>

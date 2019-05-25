@@ -2,6 +2,7 @@ package reading.speed.improver.utils
 
 import android.app.Application
 
+@Deprecated("reads words from text file")
 class ExercisesDataHandler {
     fun getWordsFromFile(app: Application, filename: String): MutableList<String?> {
         var words = emptyList<String?>().toMutableList()

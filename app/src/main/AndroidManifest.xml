@@ -10,13 +10,16 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light">
         <activity
-                android:name=".exercises.ui.ExerciseActivity"
+                android:name=".exercises.schulte.table.ui.SchulteExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+        <activity
+                android:name=".exercises.emerging.text.ui.EmergingTextExerciseActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <activity android:name=".Chitaloid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -46,7 +49,7 @@
         </activity>
         <activity android:name=".user.pupil.PupilMainScreen"/>
         <activity
-                android:name=".user.teacher.PupilsManagement"
+                android:name=".user.pupil.management.PupilsManagement"
                 android:label="Управление аккаунтами"
                 android:parentActivityName=".user.teacher.TeacherMainScreen">
             <meta-data

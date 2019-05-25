@@ -12,7 +12,9 @@ class ExerciseSelectionScreenUI : AnkoComponent<ExerciseSelectionScreen> {
         verticalLayout {
 
             for ((exercise_title, value) in ChitaloidRepository.getInstance().exercises) {
-                button(exercise_title) { onClick { owner.startExercise(value) } }
+                button(exercise_title) { onClick {
+                    owner.onSelectExercise(value)
+                } }
             }
         }
     }

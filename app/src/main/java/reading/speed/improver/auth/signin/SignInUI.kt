@@ -6,7 +6,7 @@ import android.widget.TextView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onItemClick
 import reading.speed.improver.user.pupil.Pupil
-import reading.speed.improver.user.teacher.PupilsAdapter
+import reading.speed.improver.user.pupil.management.PupilsAdapter
 
 class SignInUI(val pupilsAdapter: PupilsAdapter) : AnkoComponent<SignIn> {
     lateinit var hintListView: TextView

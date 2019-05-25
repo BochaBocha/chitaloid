@@ -21,6 +21,5 @@ class PupilMainScreen : AppCompatActivity() {
     override fun finish(){
         super.finish()
         ChitaloidRepository.getInstance().currentPupil = null
-//        CurrentUser.name = ""
     }
 }

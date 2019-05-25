@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@android:color/background_light"
+             tools:context=".exercises.emerging.text.ui.EmergingTextExerciseActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/fullscreen_content" android:orientation="vertical">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <Button
+                    android:text="@string/exercise_menu_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/menu_button"
+                    style="@style/Widget.AppCompat.Button.Borderless"/>
+            <Space
+                    android:layout_width="50dp"
+                    android:layout_height="34dp" android:layout_weight="1"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/current_speed_view"/>
+            <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+        </LinearLayout>
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:scrollbarStyle="insideOverlay"
+                android:id="@+id/exercise_scroll_view">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="vertical">
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/emerging_text_view"
+                        android:text=" "
+                        android:textSize="14sp" android:lineSpacingExtra="8sp"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</FrameLayout>

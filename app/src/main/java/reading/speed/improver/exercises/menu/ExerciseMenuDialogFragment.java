@@ -1,4 +1,4 @@
-package reading.speed.improver.exercises.ui;
+package reading.speed.improver.exercises.menu;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -20,6 +20,8 @@ public class ExerciseMenuDialogFragment extends DialogFragment {
         void onMenuSettingsClick(DialogFragment dialog);
 
         void onMenuExitClick(DialogFragment dialog);
+
+        void onMenuDestroy(DialogFragment dialog);
     }
 
     ExerciseMenuDialogListener mListener;
@@ -41,28 +43,28 @@ public class ExerciseMenuDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_exercise_menu, null);
         builder.setView(view);
-        Button continueButton = (Button) view.findViewById(R.id.button_continue);
+        Button continueButton = view.findViewById(R.id.button_continue);
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onMenuContinueClick(ExerciseMenuDialogFragment.this);
             }
         });
-        Button restartButton = (Button) view.findViewById(R.id.button_restart);
+        Button restartButton = view.findViewById(R.id.button_restart);
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onMenuRestartClick(ExerciseMenuDialogFragment.this);
             }
         });
-        Button settingsButton = (Button) view.findViewById(R.id.button_settings);
+        Button settingsButton = view.findViewById(R.id.button_settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onMenuSettingsClick(ExerciseMenuDialogFragment.this);
             }
         });
-        Button exitButton = (Button) view.findViewById(R.id.button_exit);
+        Button exitButton =  view.findViewById(R.id.button_exit);
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,5 +72,12 @@ public class ExerciseMenuDialogFragment extends DialogFragment {
             }
         });
         return builder.create();
+    }
+
+    @Override
+    public void onDestroy() {
+        mListener.onMenuDestroy(ExerciseMenuDialogFragment.this);
+        super.onDestroy();
+
     }
 }
