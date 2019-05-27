@@ -14,6 +14,8 @@ import androidx.fragment.app.DialogFragment;
 import reading.speed.improver.R;
 import reading.speed.improver.exercises.emerging.text.settings.model.SettingsModel;
 
+
+// TODO: fix crash when onStop() occurs
 public class ExerciseSettingsDialogFragment extends DialogFragment {
     SettingsModel settingsModel;
 
@@ -67,13 +69,13 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
             }
         });
 
-        fontSizeSeekBar.setProgress((int) (settingsModel.getTextSize() - 100) / 10);
+        fontSizeSeekBar.setProgress(Math.round((settingsModel.getTextSizeCoeff() - 1) * 10));
         Button settingsButton = view.findViewById(R.id.button_ok);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onSettingsOkClick(ExerciseSettingsDialogFragment.this,
-                        new SettingsModel(fontSizeSeekBar.getProgress() * 10 + 100, 1,
+                        new SettingsModel(fontSizeSeekBar.getProgress() * 0.1f + 1, 1,
                                 autoScrollCheckBox.isChecked()));
             }
         });

@@ -3,7 +3,6 @@ package reading.speed.improver.exercises.schulte.table.ui;
 import android.app.Activity;
 import android.graphics.*;
 import android.os.Handler;
-import android.text.TextPaint;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,9 +16,9 @@ public class SchulteTableUIManager {
     private TableLayout schulteTableView;
     private ImageView[][] schulteTableCells;
     private Integer[][] schulteMatrix;
-    private float textSize = 100;
-    private final int borderSize = 2;
-    private final int padding = 40;
+    private float textSizeCoeff = 1f;
+    private int borderSize;
+    private int padding;
     private Activity exerciseActivity;
     private Handler handler;
 
@@ -44,6 +43,8 @@ public class SchulteTableUIManager {
         this.schulteTableView = activity.findViewById(R.id.schulte_table);
         handler = new Handler();
         this.exerciseActivity = activity;
+        padding = exerciseActivity.getResources().getDimensionPixelSize(R.dimen.schulte_table_cell_padding);
+        borderSize = exerciseActivity.getResources().getDimensionPixelSize(R.dimen.schulte_table_border);
     }
 
     public void fillSchulteTable() {
@@ -123,7 +124,9 @@ public class SchulteTableUIManager {
         canvas.drawColor(backgroundColor);
         Paint paint = new Paint();
         paint.setAntiAlias(true);
-        paint.setTextSize(textSize);
+        float scaledSizeInPixels = exerciseActivity.getResources().getDimension(R.dimen.schulte_table_font_size);
+        scaledSizeInPixels *= textSizeCoeff;
+        paint.setTextSize(scaledSizeInPixels);
         paint.setTextAlign(Paint.Align.CENTER);
 
         canvas.drawText(Integer.toString(number), bitmap.getWidth() / 2, bitmap.getHeight() - padding, paint);
@@ -132,10 +135,9 @@ public class SchulteTableUIManager {
     }
 
     private float calculateMinTableCellSize() {
-        TextPaint textPaint = new TextPaint();
-        textPaint.setAntiAlias(true);
-        textPaint.setTextSize(textSize);
-        return textPaint.getTextSize();
+        float scaledSizeInPixels = exerciseActivity.getResources().getDimensionPixelSize(R.dimen.schulte_table_font_size);
+        scaledSizeInPixels *= textSizeCoeff;
+        return scaledSizeInPixels + 10;
     }
 
     private Bitmap addBorderToBitmap(final Bitmap srcBitmap) {
@@ -192,8 +194,8 @@ public class SchulteTableUIManager {
         colorTableCellForMillis(row, column, Color.RED);
     }
 
-    public void changeTextSize(final float textSize) {
-        this.textSize = textSize;
+    public void changeTextSizeCoeff(final float textSizeCoeff) {
+        this.textSizeCoeff = textSizeCoeff;
         fillSchulteTable();
     }
 }

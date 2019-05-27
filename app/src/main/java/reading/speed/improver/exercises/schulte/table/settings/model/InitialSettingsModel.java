@@ -3,17 +3,17 @@ package reading.speed.improver.exercises.schulte.table.settings.model;
 import java.io.Serializable;
 
 public class InitialSettingsModel implements Serializable {
-    private float initialTextSize;
+    private float initialTextSizeCoeff;
 
-    public InitialSettingsModel(final float initialTextSize) {
-        this.initialTextSize = initialTextSize;
+    public InitialSettingsModel(final float initialTextSizeCoeff) {
+        this.initialTextSizeCoeff = initialTextSizeCoeff;
     }
 
-    public float getInitialTextSize() {
-        return initialTextSize;
+    public float getInitialTextSizeCoeff() {
+        return initialTextSizeCoeff;
     }
 
-    public void setInitialTextSize(final float initialTextSize) {
-        this.initialTextSize = initialTextSize;
+    public void setInitialTextSizeCoeff(final float initialTextSizeCoeff) {
+        this.initialTextSizeCoeff = initialTextSizeCoeff;
     }
 }

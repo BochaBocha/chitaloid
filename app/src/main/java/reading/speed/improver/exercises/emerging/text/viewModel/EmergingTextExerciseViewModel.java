@@ -10,7 +10,7 @@ import reading.speed.improver.repository.ChitaloidRepository;
 public class EmergingTextExerciseViewModel extends AndroidViewModel {
     private MutableLiveData<Float> currentSpeed;
     private MutableLiveData<String> currentText;
-    private MutableLiveData<Float> currentTextSize;
+    private MutableLiveData<Float> currentTextSizeCoeff;
     private MutableLiveData<Boolean> autoScrollOption;
     private EmergingTextExercise emergingTextExercise;
 
@@ -19,14 +19,14 @@ public class EmergingTextExerciseViewModel extends AndroidViewModel {
 
         emergingTextExercise = ChitaloidRepository.getInstance().getEmergingTextExerciseModel();
         emergingTextExercise.startStopwatch();
-        currentTextSize = emergingTextExercise.getTextSize();
+        currentTextSizeCoeff = emergingTextExercise.getTextSizeCoeff();
         currentSpeed = emergingTextExercise.getCurrentSpeed();
         currentText = emergingTextExercise.getCurrentText();
         autoScrollOption = emergingTextExercise.getAutoScrollOption();
     }
 
-    public MutableLiveData<Float> getCurrentTextSize() {
-        return currentTextSize;
+    public MutableLiveData<Float> getCurrentTextSizeCoeff() {
+        return currentTextSizeCoeff;
     }
 
     public MutableLiveData<Float> getCurrentSpeed() {
@@ -41,8 +41,8 @@ public class EmergingTextExerciseViewModel extends AndroidViewModel {
         return autoScrollOption;
     }
 
-    public void changeTextSize(final Float textSize) {
-        emergingTextExercise.changeTextSize(textSize);
+    public void changeTextSizeCoeff(final Float textSizeCoeff) {
+        emergingTextExercise.changeTextSizeCoeff(textSizeCoeff);
     }
 
     public void setAutoScrollOption(final Boolean autoScrollOption) {

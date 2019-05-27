@@ -9,17 +9,16 @@ enum class ValidationResult {
 }
 
 fun isUserNameValid(name: String): ValidationResult {
-
     if (name.isNullOrEmpty() || name.isNullOrBlank()) {
         return ValidationResult.TO_SHORT
     }
     if (isNameTooShort(name)) {
         return ValidationResult.TO_SHORT
     }
-
     if (ChitaloidRepository.getInstance().getPupilByName(name) != null) {
         return ValidationResult.ALREADY_TAKEN
     }
+
     return ValidationResult.SUCCESS
 }
 

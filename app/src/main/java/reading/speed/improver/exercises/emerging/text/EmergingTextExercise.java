@@ -2,9 +2,9 @@ package reading.speed.improver.exercises.emerging.text;
 
 import androidx.lifecycle.MutableLiveData;
 import reading.speed.improver.exercises.ExerciseModel;
-import reading.speed.improver.exercises.components.stopwatch.Stopwatch;
-import reading.speed.improver.exercises.components.stopwatch.StopwatchObserver;
 import reading.speed.improver.exercises.emerging.text.params.EmergingTextExerciseParams;
+import reading.speed.improver.exercises.emerging.text.stopwatch.Stopwatch;
+import reading.speed.improver.exercises.emerging.text.stopwatch.StopwatchObserver;
 
 import java.util.UUID;
 
@@ -14,8 +14,9 @@ public class EmergingTextExercise implements StopwatchObserver, ExerciseModel {
     private UUID id;
     private String name;
     private Stopwatch stopwatch;
-    private Float defaultTextSize = 70f;
+    private Float defaultTextSizeCoeff = 1f;
     private Float defaultSpeed;
+    private EmergingText emergingText;
 
     public MutableLiveData<String> getCurrentText() {
         return currentText;
@@ -30,14 +31,14 @@ public class EmergingTextExercise implements StopwatchObserver, ExerciseModel {
     }
 
     private MutableLiveData<Float> currentSpeed;
-    private MutableLiveData<Float> textSize; // in sp
+    private MutableLiveData<Float> textSizeCoeff;
 
     public EmergingTextExercise(EmergingTextExerciseParams params) {
         name = params.getName();
-        defaultTextSize = params.getDefaultTextSize();
+        defaultTextSizeCoeff = params.getDefaultTextSizeCoeff();
         id = UUID.randomUUID();
-        textSize = new MutableLiveData<>();
-        textSize.setValue(defaultTextSize);
+        textSizeCoeff = new MutableLiveData<>();
+        textSizeCoeff.setValue(defaultTextSizeCoeff);
         currentText = new MutableLiveData<>();
         currentText.setValue("");
         currentSpeed = new MutableLiveData<>();
@@ -47,6 +48,8 @@ public class EmergingTextExercise implements StopwatchObserver, ExerciseModel {
         stopwatch = new Stopwatch();
 
         stopwatch.registerObserver(this);
+        emergingText = new EmergingText();
+
     }
 
     public String getName() {
@@ -57,29 +60,34 @@ public class EmergingTextExercise implements StopwatchObserver, ExerciseModel {
         this.name = name;
     }
 
-    public MutableLiveData<Float> getTextSize() {
-        return textSize;
+    public MutableLiveData<Float> getTextSizeCoeff() {
+        return textSizeCoeff;
     }
+
     public MutableLiveData<Boolean> getAutoScrollOption() {
         return autoScroll;
     }
 
-    public void changeTextSize(final Float textSize) {
-        this.textSize.setValue(textSize);
+    public void changeTextSizeCoeff(final Float textSizeCoeff) {
+        this.textSizeCoeff.setValue(textSizeCoeff);
     }
 
-    public void setAutoScrollOption(final Boolean autoScrollOption){
+    public void setAutoScrollOption(final Boolean autoScrollOption) {
         autoScroll.setValue(autoScrollOption);
     }
 
     @Override
     public void update(final int seconds) {
-        String text = currentText.getValue();
-        currentText.setValue(text + getNextWord());
+        emergeText();
+        currentText.setValue(getEmergedText());
     }
 
-    private String getNextWord() {
-        return "J";
+    private void emergeText() {
+        emergingText.emergeText();
+    }
+
+    private String getEmergedText() {
+        return emergingText.getEmergedText();
     }
 
     public void pauseStopwatch() {
@@ -95,5 +103,6 @@ public class EmergingTextExercise implements StopwatchObserver, ExerciseModel {
         stopwatch.reset();
         stopwatch.start();
         currentText.setValue("");
+        emergingText = new EmergingText();
     }
 }

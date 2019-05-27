@@ -35,7 +35,8 @@ public class DatabaseCopier {
 
         // If the database already exists, return
         if (dbPath.exists()) {
-            return;
+          //  dbPath.delete();
+  //          return;
         }
 
         // Make sure we have a path to the file

@@ -3,12 +3,12 @@ package reading.speed.improver.exercises.schulte.table.params;
 public class SchulteTableExerciseParamsBuilder {
 
     private String name;
-    private  Float defaultTextSize;
+    private  Float defaultTextSizeCoeff;
     private  int tableSize;
 
     public SchulteTableExerciseParamsBuilder(){
         name = "Таблица Шульте 3х3";
-        defaultTextSize = 100f;
+        defaultTextSizeCoeff = 1f; //sp
         tableSize = 3;
     }
 
@@ -20,12 +20,12 @@ public class SchulteTableExerciseParamsBuilder {
         this.name = name;
     }
 
-    public Float getDefaultTextSize() {
-        return defaultTextSize;
+    public Float getDefaultTextSizeCoeff() {
+        return defaultTextSizeCoeff;
     }
 
-    public void setDefaultTextSize(Float defaultTextSize) {
-        this.defaultTextSize = defaultTextSize;
+    public void setDefaultTextSizeCoeff(Float defaultTextSizeCoeff) {
+        this.defaultTextSizeCoeff = defaultTextSizeCoeff;
     }
 
     public int getTableSize() {

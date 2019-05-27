@@ -65,14 +65,14 @@ public class SchulteExerciseActivity extends AppCompatActivity implements Exerci
 
         schulteExerciseViewModel.getSchulteTable().observe(this, schulteTableObserver);
 
-        final Observer<Float> textSizeObserver = new Observer<Float>() {
+        final Observer<Float> textSizeCoeffObserver = new Observer<Float>() {
             @Override
-            public void onChanged(@Nullable final Float textSize) {
-                schulteTableUI.changeTextSize(textSize);
+            public void onChanged(@Nullable final Float textSizeCoeff) {
+                schulteTableUI.changeTextSizeCoeff(textSizeCoeff);
             }
         };
 
-        schulteExerciseViewModel.getCurrentTextSize().observe(this, textSizeObserver);
+        schulteExerciseViewModel.getCurrentTextSizeCoeff().observe(this, textSizeCoeffObserver);
 
         final Observer<Integer> currentNumberObserver = new Observer<Integer>() {
             @Override
@@ -105,8 +105,8 @@ public class SchulteExerciseActivity extends AppCompatActivity implements Exerci
 
     private void showSettingsFragment() {
         Bundle bundle = new Bundle();
-        Float currentTextSize = schulteExerciseViewModel.getCurrentTextSize().getValue();
-        Serializable settingsModel = new InitialSettingsModel(currentTextSize);
+        Float currentTextSizeCoeff = schulteExerciseViewModel.getCurrentTextSizeCoeff().getValue();
+        Serializable settingsModel = new InitialSettingsModel(currentTextSizeCoeff);
         bundle.putSerializable("initialSettings", settingsModel);
         DialogFragment exerciseSettingsDialogFragment = new ExerciseSettingsDialogFragment();
         exerciseSettingsDialogFragment.setArguments(bundle);
@@ -180,6 +180,12 @@ public class SchulteExerciseActivity extends AppCompatActivity implements Exerci
     @Override
     protected void onStop() {
         super.onStop();
-        pauseExercise();
+        schulteExerciseViewModel.pauseStopwatch();
+    }
+
+    @Override
+    protected  void onRestart(){
+        super.onRestart();
+        showMenuFragment();
     }
 }

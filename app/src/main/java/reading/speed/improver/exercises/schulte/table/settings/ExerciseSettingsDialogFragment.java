@@ -44,8 +44,8 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.schulte_table_exercise_settings, null);
         builder.setView(view);
-        final TextView fontSizeSelectedTextView = (TextView) view.findViewById(R.id.font_size_selected);
-        final SeekBar fontSizeSeekBar = (SeekBar) view.findViewById(R.id.seekBar_font_size);
+        final TextView fontSizeSelectedTextView = view.findViewById(R.id.font_size_selected);
+        final SeekBar fontSizeSeekBar = view.findViewById(R.id.seekBar_font_size);
         fontSizeSeekBar.setMax(5);
         fontSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -64,13 +64,13 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
             }
         });
 
-        fontSizeSeekBar.setProgress((int) (initialSettingsModel.getInitialTextSize() - 100) / 10);
-        Button settingsButton =  view.findViewById(R.id.button_ok);
+        fontSizeSeekBar.setProgress(Math.round((initialSettingsModel.getInitialTextSizeCoeff() - 1) * 10));
+        Button settingsButton = view.findViewById(R.id.button_ok);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.onSettingsOkClick(ExerciseSettingsDialogFragment.this,
-                        new SelectedSettingsModel(fontSizeSeekBar.getProgress() * 10 + 100));
+                        new SelectedSettingsModel(fontSizeSeekBar.getProgress() * 0.1f + 1));
             }
         });
         return builder.create();

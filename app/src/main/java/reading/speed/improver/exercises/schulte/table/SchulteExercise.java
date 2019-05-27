@@ -14,7 +14,7 @@ public class SchulteExercise implements StopwatchObserver, ExerciseModel {
     private UUID id;
     private String name;
     private Stopwatch stopwatch;
-    private Float defaultTextSize;
+    private Float defaultTextSizeCoeff;
     private int tableSize;
     private int startValue;
     private int endValue;
@@ -27,17 +27,17 @@ public class SchulteExercise implements StopwatchObserver, ExerciseModel {
 
     private MutableLiveData<Integer> currentNumber;
     private MutableLiveData<Integer[][]> schulteTable;
-    private MutableLiveData<Float> textSize; // in sp
+    private MutableLiveData<Float> textSizeCoeff;
 
     public SchulteExercise(SchulteTableExerciseParams params) {
         name = params.getName();
         tableSize = params.getTableSize();
-        defaultTextSize = params.getDefaultTextSize();
+        defaultTextSizeCoeff = params.getDefaultTextSizeCoeff();
         startValue = 1;
         endValue = tableSize * tableSize;
         id = UUID.randomUUID();
-        textSize = new MutableLiveData<>();
-        textSize.setValue(defaultTextSize);
+        textSizeCoeff = new MutableLiveData<>();
+        textSizeCoeff.setValue(defaultTextSizeCoeff);
         currentNumber = new MutableLiveData<>();
         currentNumber.setValue(startValue);
         elapsedSeconds = new MutableLiveData<>();
@@ -58,12 +58,12 @@ public class SchulteExercise implements StopwatchObserver, ExerciseModel {
         return elapsedSeconds;
     }
 
-    public MutableLiveData<Float> getTextSize() {
-        return textSize;
+    public MutableLiveData<Float> getTextSizeCoeff() {
+        return textSizeCoeff;
     }
 
     public void changeTextSize(Float textSize) {
-        this.textSize.setValue(textSize);
+        this.textSizeCoeff.setValue(textSize);
     }
 
     @Override

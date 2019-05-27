@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,14 +35,13 @@ public class EmergingTextExerciseActivity extends AppCompatActivity implements E
         mContentView = findViewById(R.id.fullscreen_content);
         currentSpeedView = findViewById(R.id.current_speed_view);
         exerciseViewModel = ViewModelProviders.of(this).get(EmergingTextExerciseViewModel.class);
-        emergingTextUIManager = new EmergingTextUIManager((ScrollView) findViewById(R.id.exercise_scroll_view));
+        emergingTextUIManager = new EmergingTextUIManager(this);
         final Button menuButton = (Button) findViewById(R.id.menu_button);
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onMenuButtonClicked();
             }
         });
-
 
         final Observer<Float> speedObserver = new Observer<Float>() {
             @Override
@@ -52,6 +50,14 @@ public class EmergingTextExerciseActivity extends AppCompatActivity implements E
             }
         };
         exerciseViewModel.getCurrentSpeed().observe(this, speedObserver);
+
+        final Observer<Float> textSizeCoeffObserver = new Observer<Float>() {
+            @Override
+            public void onChanged(@Nullable final Float textSizeCoeff) {
+                emergingTextUIManager.changeTextSizeCoeff(textSizeCoeff);
+            }
+        };
+        exerciseViewModel.getCurrentTextSizeCoeff().observe(this, textSizeCoeffObserver);
 
         final Observer<Boolean> autoScrollOptionObserver = new Observer<Boolean>() {
             @Override
@@ -95,7 +101,7 @@ public class EmergingTextExerciseActivity extends AppCompatActivity implements E
 
     private void showSettingsFragment() {
         Bundle bundle = new Bundle();
-        Serializable settingsModel = new SettingsModel(exerciseViewModel.getCurrentTextSize().getValue(),
+        Serializable settingsModel = new SettingsModel(exerciseViewModel.getCurrentTextSizeCoeff().getValue(),
                 exerciseViewModel.getCurrentSpeed().getValue(),
                 exerciseViewModel.getAutoScrollOption().getValue());
         bundle.putSerializable("initialSettings", settingsModel);
@@ -135,13 +141,19 @@ public class EmergingTextExerciseActivity extends AppCompatActivity implements E
     @Override
     protected void onStop() {
         super.onStop();
-        pauseExercise();
+        exerciseViewModel.pauseStopwatch();
+    }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        showMenuFragment();
     }
 
     @Override
     public void onSettingsOkClick(DialogFragment dialog, SettingsModel settingsModel) {
         dialog.dismiss();
-        exerciseViewModel.changeTextSize(settingsModel.getTextSize());
+        exerciseViewModel.changeTextSizeCoeff(settingsModel.getTextSizeCoeff());
         exerciseViewModel.setAutoScrollOption(settingsModel.isAutoScrollEnabled());
     }
 }

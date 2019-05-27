@@ -10,7 +10,7 @@ import reading.speed.improver.repository.ChitaloidRepository;
 public class SchulteExerciseViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> currentSeconds;
     private MutableLiveData<Integer> currentNumber;
-    private MutableLiveData<Float> currentTextSize;
+    private MutableLiveData<Float> currentTextSizeCoeff;
     private SchulteExercise schulteExercise;
 
     public SchulteExerciseViewModel(@NotNull Application application) {
@@ -18,12 +18,12 @@ public class SchulteExerciseViewModel extends AndroidViewModel {
         schulteExercise = ChitaloidRepository.getInstance().getSchulteExerciseModel();
         schulteExercise.startStopwatch();
         currentSeconds = schulteExercise.getElapsedSeconds();
-        currentTextSize = schulteExercise.getTextSize();
+        currentTextSizeCoeff = schulteExercise.getTextSizeCoeff();
         currentNumber = schulteExercise.getCurrentNumber();
     }
 
-    public MutableLiveData<Float> getCurrentTextSize() {
-        return currentTextSize;
+    public MutableLiveData<Float> getCurrentTextSizeCoeff() {
+        return currentTextSizeCoeff;
     }
     public MutableLiveData<Integer> getCurrentSeconds() {
         return currentSeconds;

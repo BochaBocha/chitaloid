@@ -56,15 +56,24 @@ public class ExercisesRepository {
         switch (exercise) {
             case SCHULTE_TABLE_SMALL: {
                 setCurrentExerciseModel(createSchulteExerciseModel(exercise.getTitle(), 3));
+                break;
             }
-            case SCHULTE_TABLE_MEDIUM:
+            case SCHULTE_TABLE_MEDIUM: {
                 setCurrentExerciseModel(createSchulteExerciseModel(exercise.getTitle(), 4));
-            case SCHULTE_TABLE_LARGE:
+                break;
+            }
+            case SCHULTE_TABLE_LARGE: {
                 setCurrentExerciseModel(createSchulteExerciseModel(exercise.getTitle(), 5));
-            case SCHULTE_TABLE_EXTRA_LARGE:
+                break;
+            }
+            case SCHULTE_TABLE_EXTRA_LARGE: {
                 setCurrentExerciseModel(createSchulteExerciseModel(exercise.getTitle(), 6));
-            case EMERGING_TEXT:
+                break;
+            }
+            case EMERGING_TEXT: {
                 setCurrentExerciseModel(createEmergingTextExerciseModel(exercise.getTitle()));
+                break;
+            }
             default:
                 createSchulteExerciseModel(exercise.getTitle(), 3);
         }
@@ -83,6 +92,7 @@ public class ExercisesRepository {
         paramsBuilder.setName(title);
         paramsBuilder.setTableSize(size);
         SchulteTableExerciseParams exerciseParams = new SchulteTableExerciseParams(paramsBuilder);
+
         return new SchulteExercise(exerciseParams);
     }
 
@@ -90,6 +100,7 @@ public class ExercisesRepository {
         EmergingTextExerciseParamsBuilder paramsBuilder = new EmergingTextExerciseParamsBuilder();
         paramsBuilder.setName(title);
         EmergingTextExerciseParams exerciseParams = new EmergingTextExerciseParams(paramsBuilder);
+
         return new EmergingTextExercise(exerciseParams);
     }
 

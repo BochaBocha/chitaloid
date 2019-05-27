@@ -12,7 +12,8 @@
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingTop="20sp">
             <Button
                     android:text="@string/exercise_menu_title"
                     android:layout_width="wrap_content"
@@ -33,12 +34,15 @@
                 android:layout_height="match_parent" android:scrollbarStyle="insideOverlay"
                 android:id="@+id/exercise_scroll_view">
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:orientation="vertical">
+                          android:orientation="vertical"
+                          android:paddingTop="30sp"
+                          android:paddingLeft="30sp"
+                          android:paddingRight="30sp"
+                          android:paddingBottom="100sp">
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/emerging_text_view"
-                        android:text=" "
-                        android:textSize="14sp" android:lineSpacingExtra="8sp"/>
+                        android:lineSpacingExtra="8sp"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

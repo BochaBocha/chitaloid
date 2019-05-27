@@ -3,11 +3,11 @@ package reading.speed.improver.exercises.emerging.text.params;
 public class EmergingTextExerciseParamsBuilder {
 
     private String name;
-    private Float defaultTextSize;
+    private Float defaultTextSizeCoeff;
 
     public EmergingTextExerciseParamsBuilder() {
         name = "Появляющиеся строчки";
-        defaultTextSize = 100f;
+        defaultTextSizeCoeff = 1f;
     }
 
     public String getName() {
@@ -18,12 +18,12 @@ public class EmergingTextExerciseParamsBuilder {
         this.name = name;
     }
 
-    public Float getDefaultTextSize() {
-        return defaultTextSize;
+    public Float getDefaultTextSizeCoeff() {
+        return defaultTextSizeCoeff;
     }
 
-    public void setDefaultTextSize(Float defaultTextSize) {
-        this.defaultTextSize = defaultTextSize;
+    public void setDefaultTextSizeCoeff(Float defaultTextSizeCoeff) {
+        this.defaultTextSizeCoeff = defaultTextSizeCoeff;
     }
 
 }
