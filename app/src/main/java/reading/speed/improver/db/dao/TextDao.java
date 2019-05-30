@@ -8,11 +8,14 @@ import java.util.List;
 @Dao
 public interface TextDao {
 
+    @Query("SELECT * FROM Text")
+    List<Text> getAll();
+
     @Query("SELECT count(_id) FROM Text")
     int getCount();
 
     @Query("SELECT * FROM Text WHERE _id = :id")
-    Text getById(Integer id);
+    Text getById(int id);
 
     @Insert
     void insert(Text text);

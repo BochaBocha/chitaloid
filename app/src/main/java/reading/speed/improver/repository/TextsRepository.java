@@ -5,6 +5,7 @@ import reading.speed.improver.db.AppDatabase;
 import reading.speed.improver.db.dao.TextDao;
 import reading.speed.improver.exercises.materials.Text;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class TextsRepository {
@@ -33,7 +34,7 @@ public class TextsRepository {
     }
 
     public Text getText(final int id) throws ExecutionException, InterruptedException {
-        return new getTextAsyncTask(mAppDataBase.getTextDao()).execute(id).get();
+        return new  getTextAsyncTask(mAppDataBase.getTextDao()).execute(id).get();
     }
 
     private static class getTextAsyncTask extends AsyncTask<Integer, Void, Text> {
@@ -47,6 +48,24 @@ public class TextsRepository {
         @Override
         protected Text doInBackground(Integer... integers) {
             return mAsyncTaskDao.getById(integers[0]);
+        }
+    }
+
+    public List<Text> getAllTexts() throws ExecutionException, InterruptedException {
+        return  new getAllTextsAsyncTask(mAppDataBase.getTextDao()).execute().get();
+    }
+
+    private static class getAllTextsAsyncTask extends AsyncTask<Void, Void, List<Text>> {
+
+        private TextDao mAsyncTaskDao;
+
+        getAllTextsAsyncTask(TextDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected List<Text> doInBackground(Void... voids) {
+            return mAsyncTaskDao.getAll();
         }
     }
 }

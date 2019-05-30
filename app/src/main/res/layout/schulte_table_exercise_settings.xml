@@ -11,10 +11,6 @@
             android:gravity="center"
     />
     <TextView
-            android:text="@string/exercise_settings_font_size_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/font_size_label"/>
-    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/font_size_selected"
             android:gravity="center"

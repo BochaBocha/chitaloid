@@ -3,7 +3,6 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:keepScreenOn="true"
              android:background="@android:color/background_light"
              tools:context=".exercises.text.appearence.emerging.ui.EmergingTextExerciseActivity">
 
@@ -42,6 +41,8 @@
                           android:paddingBottom="100sp">
                 <TextView
                         android:layout_width="match_parent"
+                        android:gravity="left"
+                        android:justificationMode="none"
                         android:breakStrategy="simple"
                         android:layout_height="wrap_content" android:id="@+id/emerging_text_view"
                         android:lineSpacingExtra="8sp"/>

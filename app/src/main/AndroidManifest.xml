@@ -14,7 +14,11 @@
                 android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <activity
-                android:name=".exercises.emerging.text.ui.EmergingTextExerciseActivity"
+                android:name=".exercises.text.appearence.emerging.ui.EmergingTextExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+        <activity
+                android:name=".exercises.text.appearence.fading.ui.FadingTextExerciseActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <activity android:name=".Chitaloid">

@@ -3,9 +3,11 @@ package reading.speed.improver.repository;
 import android.content.Context;
 import reading.speed.improver.db.AppDatabase;
 import reading.speed.improver.db.DatabaseCopier;
-import reading.speed.improver.exercises.emerging.text.EmergingTextExercise;
+import reading.speed.improver.exercises.text.appearence.emerging.EmergingTextExercise;
 import reading.speed.improver.exercises.materials.Text;
+import reading.speed.improver.exercises.materials.Word;
 import reading.speed.improver.exercises.schulte.table.SchulteExercise;
+import reading.speed.improver.exercises.text.appearence.fading.FadingTextExercise;
 import reading.speed.improver.user.pupil.Pupil;
 
 import java.util.List;
@@ -19,6 +21,7 @@ public class ChitaloidRepository {
     private PupilsRepository pupilsRepository;
     private ExercisesRepository exercisesRepository;
     private TextsRepository textsRepository;
+    private WordsRepository wordsRepository;
 
     public static ChitaloidRepository getInstance() {
         return ourInstance;
@@ -34,6 +37,7 @@ public class ChitaloidRepository {
         pupilsRepository = new PupilsRepository(mAppDataBase);
         exercisesRepository = new ExercisesRepository(mAppDataBase);
         textsRepository = new TextsRepository(mAppDataBase);
+        wordsRepository = new WordsRepository(mAppDataBase);
     }
 
     public Pupil getCurrentPupil() {
@@ -82,11 +86,17 @@ public class ChitaloidRepository {
     }
 
     public SchulteExercise getSchulteExerciseModel() {
+
         return exercisesRepository.getSchulteExercise();
     }
 
     public EmergingTextExercise getEmergingTextExerciseModel() {
+
         return exercisesRepository.getEmergingTextExercise();
+    }
+
+    public FadingTextExercise getFadingTextExerciseModel(){
+        return exercisesRepository.getFadingTextExercise();
     }
 
     public Text getText(final int id) throws ExecutionException, InterruptedException {
@@ -96,4 +106,14 @@ public class ChitaloidRepository {
     public int getTextCount() throws ExecutionException, InterruptedException {
         return textsRepository.getTextCount();
     }
+
+    public List<Text> getAllTexts() throws ExecutionException, InterruptedException {
+        return textsRepository.getAllTexts();
+    }
+
+    public List<Word> getAllWords() throws ExecutionException, InterruptedException {
+        return wordsRepository.getAllWords();
+    }
+
+
 }

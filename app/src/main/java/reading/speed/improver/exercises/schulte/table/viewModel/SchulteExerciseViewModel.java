@@ -12,6 +12,7 @@ public class SchulteExerciseViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> currentNumber;
     private MutableLiveData<Float> currentTextSizeCoeff;
     private SchulteExercise schulteExercise;
+    private boolean pauseDialogHidden;
 
     public SchulteExerciseViewModel(@NotNull Application application) {
         super(application);
@@ -20,6 +21,7 @@ public class SchulteExerciseViewModel extends AndroidViewModel {
         currentSeconds = schulteExercise.getElapsedSeconds();
         currentTextSizeCoeff = schulteExercise.getTextSizeCoeff();
         currentNumber = schulteExercise.getCurrentNumber();
+        pauseDialogHidden = true;
     }
 
     public MutableLiveData<Float> getCurrentTextSizeCoeff() {
@@ -32,9 +34,16 @@ public class SchulteExerciseViewModel extends AndroidViewModel {
         return currentNumber;
     }
 
+    public boolean isPauseDialogHidden() {
+        return pauseDialogHidden;
+    }
+
+    public void setPauseDialogHidden(boolean value) {
+        pauseDialogHidden = value;
+    }
+
     public void changeTextSize(final Float textSize){
         schulteExercise.changeTextSize(textSize);
-
     }
 
     public boolean isCurrentNumFound(final int row, final int column) {

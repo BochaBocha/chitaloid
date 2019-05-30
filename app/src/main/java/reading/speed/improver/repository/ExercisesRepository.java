@@ -1,11 +1,12 @@
 package reading.speed.improver.repository;
 
 import reading.speed.improver.db.AppDatabase;
-import reading.speed.improver.exercises.ExerciseModel;
-import reading.speed.improver.exercises.emerging.text.EmergingTextExercise;
-import reading.speed.improver.exercises.emerging.text.params.EmergingTextExerciseParams;
-import reading.speed.improver.exercises.emerging.text.params.EmergingTextExerciseParamsBuilder;
-import reading.speed.improver.exercises.emerging.text.ui.EmergingTextExerciseActivity;
+import reading.speed.improver.exercises.text.appearence.emerging.EmergingTextExercise;
+import reading.speed.improver.exercises.text.appearence.fading.FadingTextExercise;
+import reading.speed.improver.exercises.text.appearence.fading.ui.FadingTextExerciseActivity;
+import reading.speed.improver.exercises.text.appearence.params.EmergingTextExerciseParams;
+import reading.speed.improver.exercises.text.appearence.params.EmergingTextExerciseParamsBuilder;
+import reading.speed.improver.exercises.text.appearence.emerging.ui.EmergingTextExerciseActivity;
 import reading.speed.improver.exercises.schulte.table.SchulteExercise;
 import reading.speed.improver.exercises.schulte.table.params.SchulteTableExerciseParams;
 import reading.speed.improver.exercises.schulte.table.params.SchulteTableExerciseParamsBuilder;
@@ -19,7 +20,7 @@ public class ExercisesRepository {
     private Map<String, Exercises> exercises;
     private SchulteExercise schulteExercise;
     private EmergingTextExercise emergingTextExercise;
-    private ExerciseModel currentExerciseModel;
+    private FadingTextExercise fadingTextExercise;
 
     public ExercisesRepository(final AppDatabase mAppDataBase) {
         this.mAppDataBase = mAppDataBase;
@@ -29,6 +30,7 @@ public class ExercisesRepository {
         exercises.put(Exercises.SCHULTE_TABLE_LARGE.getTitle(), Exercises.SCHULTE_TABLE_LARGE);
         exercises.put(Exercises.SCHULTE_TABLE_EXTRA_LARGE.getTitle(), Exercises.SCHULTE_TABLE_EXTRA_LARGE);
         exercises.put(Exercises.EMERGING_TEXT.getTitle(), Exercises.EMERGING_TEXT);
+        exercises.put(Exercises.FADING_TEXT.getTitle(), Exercises.FADING_TEXT);
     }
 
     public Map<String, Exercises> getExercises() {
@@ -47,6 +49,8 @@ public class ExercisesRepository {
                 return SchulteExerciseActivity.class;
             case EMERGING_TEXT:
                 return EmergingTextExerciseActivity.class;
+            case FADING_TEXT:
+                return FadingTextExerciseActivity.class;
             default:
                 return SchulteExerciseActivity.class;
         }
@@ -74,6 +78,11 @@ public class ExercisesRepository {
                 setCurrentExerciseModel(createEmergingTextExerciseModel(exercise.getTitle()));
                 break;
             }
+
+            case FADING_TEXT: {
+                setCurrentExerciseModel(createFadingTextExerciseModel(exercise.getTitle()));
+                break;
+            }
             default:
                 createSchulteExerciseModel(exercise.getTitle(), 3);
         }
@@ -85,6 +94,9 @@ public class ExercisesRepository {
 
     private void setCurrentExerciseModel(EmergingTextExercise emergingTextExercise) {
         this.emergingTextExercise = emergingTextExercise;
+    }
+    private void setCurrentExerciseModel(FadingTextExercise fadingTextExercise) {
+        this.fadingTextExercise = fadingTextExercise;
     }
 
     private SchulteExercise createSchulteExerciseModel(String title, int size) {
@@ -104,10 +116,18 @@ public class ExercisesRepository {
         return new EmergingTextExercise(exerciseParams);
     }
 
+    private FadingTextExercise createFadingTextExerciseModel(String title) {
+        EmergingTextExerciseParamsBuilder paramsBuilder = new EmergingTextExerciseParamsBuilder();
+        paramsBuilder.setName(title);
+        EmergingTextExerciseParams exerciseParams = new EmergingTextExerciseParams(paramsBuilder);
+
+        return new FadingTextExercise(exerciseParams);
+    }
+
     public void invalidateCurrentExerciseModel() {
         schulteExercise = null;
         emergingTextExercise = null;
-        currentExerciseModel = null;
+        fadingTextExercise = null;
     }
 
     public SchulteExercise getSchulteExercise() {
@@ -116,5 +136,9 @@ public class ExercisesRepository {
 
     public EmergingTextExercise getEmergingTextExercise() {
         return emergingTextExercise;
+    }
+
+    public FadingTextExercise getFadingTextExercise() {
+        return fadingTextExercise;
     }
 }

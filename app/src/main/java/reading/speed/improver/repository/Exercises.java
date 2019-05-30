@@ -5,7 +5,8 @@ public enum Exercises {
     SCHULTE_TABLE_MEDIUM ("Таблица Шульте 4х4"),
     SCHULTE_TABLE_LARGE ("Таблица Шульте 5х5"),
     SCHULTE_TABLE_EXTRA_LARGE("Таблица Шульте 6х6"),
-    EMERGING_TEXT("Появляющиеся строчки");
+    EMERGING_TEXT("Появляющиеся строчки"),
+    FADING_TEXT("Исчезающие строчки");
 
     private String title;
 

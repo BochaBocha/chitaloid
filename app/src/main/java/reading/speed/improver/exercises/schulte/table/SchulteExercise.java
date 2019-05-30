@@ -1,7 +1,6 @@
 package reading.speed.improver.exercises.schulte.table;
 
 import androidx.lifecycle.MutableLiveData;
-import reading.speed.improver.exercises.ExerciseModel;
 import reading.speed.improver.exercises.components.stopwatch.StopwatchObserver;
 import reading.speed.improver.exercises.components.stopwatch.Stopwatch;
 import reading.speed.improver.exercises.schulte.table.params.SchulteTableExerciseParams;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
-public class SchulteExercise implements StopwatchObserver, ExerciseModel {
+public class SchulteExercise implements StopwatchObserver {
     private UUID id;
     private String name;
     private Stopwatch stopwatch;

@@ -1,8 +1,10 @@
 package reading.speed.improver.service;
 
 import reading.speed.improver.exercises.materials.Text;
+import reading.speed.improver.exercises.materials.Word;
 import reading.speed.improver.repository.ChitaloidRepository;
 import reading.speed.improver.user.pupil.Pupil;
+import reading.speed.improver.utils.formatter.TextFormatter;
 
 import java.util.List;
 import java.util.Random;
@@ -49,8 +51,8 @@ public class ChitaloidService {
         try {
             int count = chitaloidRepository.getTextCount();
             Random random = new Random();
-            Text text = chitaloidRepository.getText(1);
             int id = random.nextInt(count) + 1;
+            TextFormatter textFormatter = new TextFormatter();
             return chitaloidRepository.getText(id);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();

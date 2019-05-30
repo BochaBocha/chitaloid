@@ -1,6 +1,7 @@
 package reading.speed.improver.db;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 
 import java.io.File;
@@ -35,8 +36,8 @@ public class DatabaseCopier {
 
         // If the database already exists, return
         if (dbPath.exists()) {
-          //  dbPath.delete();
-  //          return;
+              dbPath.delete();
+            //          return;
         }
 
         // Make sure we have a path to the file
@@ -44,7 +45,7 @@ public class DatabaseCopier {
 
         // Try to copy database file
         try {
-            final InputStream inputStream = context.getAssets().open("databases/" + databaseName);
+            final InputStream inputStream = context.getAssets().open(databaseName);
             final OutputStream output = new FileOutputStream(dbPath);
 
             byte[] buffer = new byte[8192];

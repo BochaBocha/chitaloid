@@ -50,7 +50,7 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
         fontSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                fontSizeSelectedTextView.setText(String.valueOf((progress) * 10 + 100) + "%");
+                fontSizeSelectedTextView.setText("Размер шрифта: " + String.valueOf((progress) * 10 + 100) + "%");
             }
 
             @Override
@@ -60,7 +60,7 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                fontSizeSelectedTextView.setText(String.valueOf(seekBar.getProgress() * 10 + 100) + "%");
+                fontSizeSelectedTextView.setText("Размер шрифта: " + String.valueOf(seekBar.getProgress() * 10 + 100) + "%");
             }
         });
 

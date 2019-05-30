@@ -184,8 +184,17 @@ public class SchulteExerciseActivity extends AppCompatActivity implements Exerci
     }
 
     @Override
-    protected  void onRestart(){
+    protected void onResume() {
+        super.onResume();
+        if (!schulteExerciseViewModel.isPauseDialogHidden()) {
+            schulteExerciseViewModel.setPauseDialogHidden(true);
+            showMenuFragment();
+        }
+    }
+
+    @Override
+    protected void onRestart() {
         super.onRestart();
-        showMenuFragment();
+        schulteExerciseViewModel.setPauseDialogHidden(false);
     }
 }

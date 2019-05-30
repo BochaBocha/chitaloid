@@ -11,7 +11,7 @@ import reading.speed.improver.db.dao.WordDao
 import reading.speed.improver.exercises.materials.Text
 import reading.speed.improver.user.pupil.Pupil
 
-@Database(entities = [(Pupil::class),(Word::class), (Text::class)], version = 1, exportSchema = false)
+@Database(entities = [(Pupil::class),(Word::class), (Text::class)], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getPupilDao(): PupilDao
     abstract fun getWordDao(): WordDao
