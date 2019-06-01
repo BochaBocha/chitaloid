@@ -1,4 +1,4 @@
-package reading.speed.improver.user.pupil
+package reading.speed.improver.user.pupil.exercise.selection
 
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext

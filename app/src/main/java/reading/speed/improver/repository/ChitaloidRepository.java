@@ -14,11 +14,11 @@ import reading.speed.improver.exercises.text.spaceless.SpacelessTextExercise;
 import reading.speed.improver.exercises.word.appearence.EmergingWordsExercise;
 import reading.speed.improver.repository.exercises.Exercises;
 import reading.speed.improver.repository.exercises.ExercisesRepository;
+import reading.speed.improver.statistic.Statistic;
 import reading.speed.improver.user.pupil.Pupil;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class ChitaloidRepository {
@@ -28,7 +28,8 @@ public class ChitaloidRepository {
     private ExercisesRepository exercisesRepository;
     private TextsRepository textsRepository;
     private WordsRepository wordsRepository;
-    private SentenceRepository sentenceRepository;
+    private SentencesRepository sentencesRepository;
+    private StatisticsRepository statisticsRepository;
 
     public static ChitaloidRepository getInstance() {
         return ourInstance;
@@ -45,7 +46,8 @@ public class ChitaloidRepository {
         exercisesRepository = new ExercisesRepository(mAppDataBase);
         textsRepository = new TextsRepository(mAppDataBase);
         wordsRepository = new WordsRepository(mAppDataBase);
-        sentenceRepository = new SentenceRepository(mAppDataBase);
+        sentencesRepository = new SentencesRepository(mAppDataBase);
+        statisticsRepository = new StatisticsRepository(mAppDataBase);
     }
 
     public Pupil getCurrentPupil() {
@@ -57,7 +59,7 @@ public class ChitaloidRepository {
     }
 
     public Pupil createPupil(final String name) {
-        return new Pupil(UUID.randomUUID().toString(), name);
+        return new Pupil(name);
     }
 
     public void addPupil(final Pupil pupil) {
@@ -78,7 +80,7 @@ public class ChitaloidRepository {
 
     public Sentence getRandomSentence() {
         try {
-            return sentenceRepository.getRandomSentence();
+            return sentencesRepository.getRandomSentence();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
             return null;
@@ -148,11 +150,45 @@ public class ChitaloidRepository {
 
     public Sentence getRandomSentence(final int minAmountOfLetters, final int maxAmountOfLetters) {
         try {
-            return sentenceRepository.getRandomSentenceInRange(minAmountOfLetters, maxAmountOfLetters);
+            return sentencesRepository.getRandomSentenceInRange(minAmountOfLetters, maxAmountOfLetters);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
             return null;
         }
     }
 
+    public void insertStatistic(final Statistic statistic) {
+        statisticsRepository.insert(statistic);
+    }
+
+    public void deleteStatistic(final Integer pupil_id) {
+        statisticsRepository.delete(pupil_id);
+    }
+
+    public List<Statistic> getStatisticByPupilId(final Integer pupil_id) {
+        try {
+            return statisticsRepository.getByPupilId(pupil_id);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getNameById(final Integer id) {
+        try {
+            return exercisesRepository.getNameById(id);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Integer getIdByName(final String name) {
+        try {
+            return exercisesRepository.getIdByName(name);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -11,6 +11,7 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.sdk27.coroutines.onItemLongClick
 import org.jetbrains.anko.design.floatingActionButton
+import reading.speed.improver.user.pupil.Pupil
 import reading.speed.improver.utils.ValidationResult
 import reading.speed.improver.utils.isUserNameValid
 
@@ -34,13 +35,20 @@ class PupilsManagementUI(val pupilsAdapter: PupilsAdapter) : AnkoComponent<Pupil
                     onItemLongClick { adapterView, view, i, l ->
                         val options = listOf("Посмотреть статистику", "Очистить статистику", "Удалить")
                         selector("Опции", options) { DialogInterface, j ->
+                            if(j==0){
+                                val pupil = adapter.getItem(i)
+                                owner.startStatisticsScreen(pupil as Pupil)
+                            }
+                            if (j == 1)  {
+                                val pupil = adapter.getItem(i)
+                                owner.deleteStatistics(pupil as Pupil)
+                                longToast("Статистика удалена")
+                            }
                             if (j == 2) {
                                 val pupil = adapter.getItem(i)
                                 pupilsAdapter?.delete(i)
                                 showHideHintListView(this@listView)
                                 longToast("Пользователь был удален")
-                            } else {
-                                longToast("На данный момент эта функция находится в разработке")
                             }
                         }
                         true

@@ -27,7 +27,7 @@ public class PupilsRepository {
     }
 
     public Pupil createPupil(String name) {
-        return new Pupil(UUID.randomUUID().toString(), name);
+        return new Pupil(name);
     }
 
     void addPupil(final Pupil pupil) {
@@ -46,7 +46,6 @@ public class PupilsRepository {
     public Pupil getPupilByName(final String name) throws ExecutionException, InterruptedException {
         return new getAsyncTask(mAppDataBase.getPupilDao()).execute(name).get();
     }
-
 
     private static class insertAsyncTask extends AsyncTask<Pupil, Void, Void> {
 

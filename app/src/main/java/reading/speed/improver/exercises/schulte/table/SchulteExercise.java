@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 import reading.speed.improver.exercises.components.stopwatch.StopwatchObserver;
 import reading.speed.improver.exercises.components.stopwatch.Stopwatch;
 import reading.speed.improver.exercises.schulte.table.params.SchulteTableExerciseParams;
+import reading.speed.improver.service.ChitaloidService;
+import reading.speed.improver.statistic.Statistic;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -111,10 +113,16 @@ public class SchulteExercise implements StopwatchObserver {
     public void increaseCurrentNum() {
         int currentNumberValue = currentNumber.getValue();
         if (currentNumberValue == endValue) {
+            saveStatistic();
             restartExercise();
         } else {
             currentNumber.setValue(++currentNumberValue);
         }
+    }
+    private void saveStatistic(){
+        ChitaloidService chitaloidService = new ChitaloidService();
+        Statistic statistic = chitaloidService.createStatistic(name, elapsedSeconds.getValue());
+        chitaloidService.insertStatistic(statistic);
     }
 
     public void restartExercise() {

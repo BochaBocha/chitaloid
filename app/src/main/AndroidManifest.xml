@@ -10,6 +10,22 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light">
         <activity
+                android:name=".user.teacher.PupilStatisticsActivity"
+                android:label="Статистика"
+                android:parentActivityName=".user.pupil.management.PupilsManagement">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="reading.speed.improver.user.pupil.management.PupilsManagement"/>
+        </activity>
+        <activity
+                android:name=".user.pupil.statistic.PupilStatisticsActivity"
+                android:label="Статистика"
+                android:parentActivityName=".user.pupil.PupilMainScreen">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="reading.speed.improver.user.pupil.PupilMainScreen"/>
+        </activity>
+        <activity
                 android:name=".exercises.schulte.table.ui.SchulteExerciseActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
@@ -36,6 +52,7 @@
         <activity android:name=".Chitaloid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -73,7 +90,7 @@
                     android:value="reading.speed.improver.user.teacher.TeacherMainScreen"/>
         </activity>
         <activity
-                android:name=".user.pupil.ExerciseSelectionScreen"
+                android:name=".user.pupil.exercise.selection.ExerciseSelectionScreen"
                 android:label="Выбор упражнения"
                 android:parentActivityName=".user.pupil.PupilMainScreen">
             <meta-data

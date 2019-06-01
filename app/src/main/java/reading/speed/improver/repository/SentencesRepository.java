@@ -4,15 +4,13 @@ import android.os.AsyncTask;
 import reading.speed.improver.db.AppDatabase;
 import reading.speed.improver.db.dao.SentenceDao;
 import reading.speed.improver.exercises.materials.sentence.Sentence;
-import reading.speed.improver.exercises.materials.sentence.SentencesClassification;
 
 import java.util.concurrent.ExecutionException;
 
-public class SentenceRepository {
+public class SentencesRepository {
     private AppDatabase mAppDataBase;
-    private SentencesClassification sentencesClassification;
 
-    SentenceRepository(AppDatabase mAppDataBase) {
+    SentencesRepository(AppDatabase mAppDataBase) {
         this.mAppDataBase = mAppDataBase;
     }
 

@@ -12,11 +12,14 @@ import reading.speed.improver.exercises.text.spaceless.SpacelessTextExercise;
 import reading.speed.improver.exercises.word.appearence.EmergingWordsExercise;
 import reading.speed.improver.repository.ChitaloidRepository;
 import reading.speed.improver.repository.exercises.Exercises;
+import reading.speed.improver.statistic.Statistic;
 import reading.speed.improver.user.pupil.Pupil;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class ChitaloidService {
@@ -36,7 +39,7 @@ public class ChitaloidService {
     }
 
     public Pupil createPupil(String name) {
-        return new Pupil(UUID.randomUUID().toString(), name);
+        return new Pupil(name);
     }
 
     public void addPupil(Pupil pupil) {
@@ -123,4 +126,38 @@ public class ChitaloidService {
                 sentencesClassification.getMaxAmountOfLetters()
         );
     }
+
+    public Statistic createStatistic(String exerciseName, Integer lead_time_sec) {
+        return new Statistic(null, chitaloidRepository.getCurrentPupil()._id,
+                chitaloidRepository.getIdByName(exerciseName)
+                , new Date(), lead_time_sec, null);
+    }
+
+    public void insertStatistic(final Statistic statistic) {
+        chitaloidRepository.insertStatistic(statistic);
+    }
+
+    public void deleteStatistics(Pupil pupil){
+        chitaloidRepository.deleteStatistic(pupil._id);
+    }
+
+    public String getPupilStatistic(int pupilId) {
+        ArrayList<Statistic> statistics = (ArrayList<Statistic>) chitaloidRepository.getStatisticByPupilId(pupilId);
+        if (statistics.size() == 0) {
+            return "Статистика не найдена";
+        }
+        return constructStatisticsString(statistics);
+    }
+
+    private String constructStatisticsString(ArrayList<Statistic> statistics) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Statistic statistic : statistics) {
+            stringBuilder.append(chitaloidRepository.getNameById(statistic.exercise_id)).append(" ");
+
+            stringBuilder.append(new SimpleDateFormat("MM-dd-yyyy").format(statistic.date)).append(" ");
+            stringBuilder.append(statistic.lead_time_sec).append(" сек").append("\n");
+        }
+        return stringBuilder.toString();
+    }
+
 }

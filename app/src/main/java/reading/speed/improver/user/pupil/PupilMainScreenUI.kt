@@ -8,18 +8,18 @@ import reading.speed.improver.repository.ChitaloidRepository
 
 class PupilMainScreenUI : AnkoComponent<PupilMainScreen> {
     override fun createView(ui: AnkoContext<PupilMainScreen>) = with(ui) {
-        verticalLayout{
-            textView("Добро пожаловать, "+ ChitaloidRepository.getInstance().currentPupil.name +" !"){
+        verticalLayout {
+            textView("Добро пожаловать, " + ChitaloidRepository.getInstance().currentPupil.name + " !") {
                 textSize = 20f
                 padding = dip(10)
-            }.lparams{
+            }.lparams {
                 gravity = Gravity.CENTER_HORIZONTAL and Gravity.TOP
             }
             button("Упражнения") {
                 onClick { owner.startExerciseSelection() }
             }
             button("Статистика") {
-                onClick { longToast("Данная функция находится в разработке") }
+                onClick { owner.startStatisticsScreen() }
             }
             button("Выйти из учетной записи") {
                 onClick { owner.finish() }
@@ -27,3 +27,4 @@ class PupilMainScreenUI : AnkoComponent<PupilMainScreen> {
         }
     }
 }
+

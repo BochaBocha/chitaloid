@@ -1,6 +1,9 @@
 package reading.speed.improver.repository.exercises;
 
+import android.os.AsyncTask;
 import reading.speed.improver.db.AppDatabase;
+import reading.speed.improver.db.dao.ExerciseDao;
+import reading.speed.improver.exercises.Exercise;
 import reading.speed.improver.exercises.text.appearence.emerging.EmergingTextExercise;
 import reading.speed.improver.exercises.text.appearence.fading.FadingTextExercise;
 import reading.speed.improver.exercises.text.appearence.fading.ui.FadingTextExerciseActivity;
@@ -20,6 +23,7 @@ import reading.speed.improver.exercises.word.appearence.ui.EmergingWordsExercise
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class ExercisesRepository {
     private AppDatabase mAppDataBase;
@@ -145,6 +149,44 @@ public class ExercisesRepository {
 
     public void invalidateCurrentExercise() {
         currentExercise = null;
+    }
+
+    public Integer getIdByName(final String name) throws ExecutionException, InterruptedException {
+        return new getIdByNameAsyncTask(mAppDataBase.getExerciseDao()).execute(name).get();
+    }
+
+    private static class getIdByNameAsyncTask extends AsyncTask<String, Void, Integer> {
+
+        private ExerciseDao mAsyncTaskDao;
+
+        getIdByNameAsyncTask(ExerciseDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Integer doInBackground(String... strings) {
+            return mAsyncTaskDao.getIdByName(strings[0]);
+        }
+
+    }
+
+    public String getNameById(final Integer id) throws ExecutionException, InterruptedException {
+        return new getNameByIdAsyncTask(mAppDataBase.getExerciseDao()).execute(id).get();
+    }
+
+    private static class getNameByIdAsyncTask extends AsyncTask<Integer, Void, String> {
+
+        private ExerciseDao mAsyncTaskDao;
+
+        getNameByIdAsyncTask(ExerciseDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected String doInBackground(Integer... integers) {
+            return mAsyncTaskDao.getNameById(integers[0]);
+        }
+
     }
 
 }
