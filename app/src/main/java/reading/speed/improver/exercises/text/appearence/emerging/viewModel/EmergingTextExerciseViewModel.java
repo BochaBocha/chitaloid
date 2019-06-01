@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import org.jetbrains.annotations.NotNull;
 import reading.speed.improver.exercises.text.appearence.emerging.EmergingTextExercise;
-import reading.speed.improver.repository.ChitaloidRepository;
+import reading.speed.improver.service.ChitaloidService;
 
 public class EmergingTextExerciseViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> currentSpeed;
@@ -17,8 +17,8 @@ public class EmergingTextExerciseViewModel extends AndroidViewModel {
 
     public EmergingTextExerciseViewModel(@NotNull Application application) {
         super(application);
-
-        emergingTextExercise = ChitaloidRepository.getInstance().getEmergingTextExerciseModel();
+        ChitaloidService chitaloidService = new ChitaloidService();
+        emergingTextExercise = chitaloidService.createEmergingTextExercise();
         emergingTextExercise.startTimer();
         currentTextSizeCoeff = emergingTextExercise.getTextSizeCoeff();
         currentSpeed = emergingTextExercise.getCurrentSpeed();
@@ -78,6 +78,7 @@ public class EmergingTextExerciseViewModel extends AndroidViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        ChitaloidRepository.getInstance().invalidateCurrentExerciseModel();
+        ChitaloidService chitaloidService = new ChitaloidService();
+        chitaloidService.invalidateCurrentExercise();
     }
 }

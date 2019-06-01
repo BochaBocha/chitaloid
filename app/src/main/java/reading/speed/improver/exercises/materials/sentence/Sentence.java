@@ -1,4 +1,4 @@
-package reading.speed.improver.exercises.materials;
+package reading.speed.improver.exercises.materials.sentence;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

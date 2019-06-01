@@ -11,8 +11,8 @@ public interface WordDao {
     @Query("SELECT * FROM Word")
     List<Word> getAll();
 
-    @Query("SELECT * FROM Word WHERE _id = :id")
-    Word getById(Integer id);
+    @Query("SELECT * FROM Word WHERE LENGTH(content)=:amountOfLetters order by Random() limit 1;")
+    Word getRandom(Integer amountOfLetters);
 
     @Insert
     void insert(Word word);

@@ -2,9 +2,9 @@ package reading.speed.improver.exercises.text.appearence.fading;
 
 import android.text.SpannableString;
 import androidx.lifecycle.MutableLiveData;
-import reading.speed.improver.exercises.text.appearence.params.EmergingTextExerciseParams;
-import reading.speed.improver.exercises.text.appearence.timer.Timer;
-import reading.speed.improver.exercises.text.appearence.timer.TimerObserver;
+import reading.speed.improver.exercises.params.DefaultExerciseParams;
+import reading.speed.improver.exercises.components.timer.Timer;
+import reading.speed.improver.exercises.components.timer.TimerObserver;
 
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ public class FadingTextExercise implements TimerObserver {
     private MutableLiveData<Integer> currentSpeed;
     private MutableLiveData<Float> textSizeCoeff;
 
-    public FadingTextExercise(EmergingTextExerciseParams params) {
+    public FadingTextExercise(DefaultExerciseParams params) {
         name = params.getName();
         defaultTextSizeCoeff = params.getDefaultTextSizeCoeff();
         id = UUID.randomUUID();
@@ -31,9 +31,6 @@ public class FadingTextExercise implements TimerObserver {
         currentText.setValue(new SpannableString(""));
         currentSpeed = new MutableLiveData<>();
         currentSpeed.setValue(defaultSpeed);
-        timer = new Timer(calcMillis());
-
-        timer.registerObserver(this);
         fadingText = new FadingText();
     }
 
@@ -64,7 +61,6 @@ public class FadingTextExercise implements TimerObserver {
 
     public void setSpeed(int speed) {
         currentSpeed.setValue(speed);
-        timer.setDelayMillis(calcMillis());
     }
 
     @Override
@@ -77,18 +73,29 @@ public class FadingTextExercise implements TimerObserver {
     }
 
     public void pauseTimer() {
+        timer.removeObserver(this);
         timer.pause();
+        timer = null;
     }
 
     public void startTimer() {
-        timer.start();
+        createTimer();
     }
 
     public void restartExercise() {
-        timer.reset();
-        timer.start();
+        createTimer();
         currentText.setValue(new SpannableString(""));
         fadingText = new FadingText();
+    }
+
+    private void createTimer() {
+        if (timer != null) {
+            timer.removeObserver(this);
+            timer.pause();
+        }
+        timer = new Timer(calcMillis());
+        timer.registerObserver(this);
+        timer.start();
     }
 
     private long calcMillis() {

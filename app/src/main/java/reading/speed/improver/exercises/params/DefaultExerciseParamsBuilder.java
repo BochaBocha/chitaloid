@@ -1,12 +1,11 @@
-package reading.speed.improver.exercises.text.appearence.params;
+package reading.speed.improver.exercises.params;
 
-public class EmergingTextExerciseParamsBuilder {
-
+public class DefaultExerciseParamsBuilder {
     private String name;
     private Float defaultTextSizeCoeff;
 
-    public EmergingTextExerciseParamsBuilder() {
-        name = "Успей за строчкой";
+    public DefaultExerciseParamsBuilder() {
+        name = "Упражнение без названия";
         defaultTextSizeCoeff = 1f;
     }
 

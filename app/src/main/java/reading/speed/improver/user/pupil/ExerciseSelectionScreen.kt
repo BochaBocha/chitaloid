@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.setContentView
-import reading.speed.improver.repository.ChitaloidRepository
-import reading.speed.improver.repository.Exercises
+import reading.speed.improver.repository.exercises.Exercises
+import reading.speed.improver.service.ChitaloidService
 
 class ExerciseSelectionScreen : AppCompatActivity() {
 
@@ -20,8 +20,8 @@ class ExerciseSelectionScreen : AppCompatActivity() {
     }
 
     fun onSelectExercise(exercise: Exercises){
-        var chitaloidRepository = ChitaloidRepository.getInstance()
-        val exerciseModel = chitaloidRepository.createExerciseModel(exercise)
-        startExercise(chitaloidRepository.getExerciseActivity(exercise))
+        var chitaloidService = ChitaloidService()
+        chitaloidService.setCurrentExercise(exercise)
+        startExercise(chitaloidService.exerciseActivity)
     }
 }

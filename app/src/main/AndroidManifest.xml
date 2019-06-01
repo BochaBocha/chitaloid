@@ -21,6 +21,18 @@
                 android:name=".exercises.text.appearence.fading.ui.FadingTextExerciseActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
+        <activity
+                android:name=".exercises.text.spaceless.ui.SpacelessTextExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+        <activity
+                android:name=".exercises.text.misplaced.spaces.ui.MisplacedSpacesExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+        <activity
+                android:name=".exercises.word.appearence.ui.EmergingWordsExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
         <activity android:name=".Chitaloid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

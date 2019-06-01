@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import org.jetbrains.annotations.NotNull;
 import reading.speed.improver.exercises.text.appearence.fading.FadingTextExercise;
-import reading.speed.improver.repository.ChitaloidRepository;
+import reading.speed.improver.service.ChitaloidService;
 
 public class FadingTextExerciseViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> currentSpeed;
@@ -17,7 +17,8 @@ public class FadingTextExerciseViewModel extends AndroidViewModel {
 
     public FadingTextExerciseViewModel(@NotNull Application application) {
         super(application);
-        fadingTextExercise = ChitaloidRepository.getInstance().getFadingTextExerciseModel();
+        ChitaloidService chitaloidService = new ChitaloidService();
+        fadingTextExercise = chitaloidService.createFadingTextExerciseModel();
         fadingTextExercise.startTimer();
         currentTextSizeCoeff = fadingTextExercise.getTextSizeCoeff();
         currentSpeed = fadingTextExercise.getCurrentSpeed();
@@ -68,6 +69,7 @@ public class FadingTextExerciseViewModel extends AndroidViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        ChitaloidRepository.getInstance().invalidateCurrentExerciseModel();
+        ChitaloidService chitaloidService = new ChitaloidService();
+        chitaloidService.invalidateCurrentExercise();
     }
 }

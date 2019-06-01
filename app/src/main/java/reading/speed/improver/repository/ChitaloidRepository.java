@@ -3,11 +3,17 @@ package reading.speed.improver.repository;
 import android.content.Context;
 import reading.speed.improver.db.AppDatabase;
 import reading.speed.improver.db.DatabaseCopier;
+import reading.speed.improver.exercises.materials.sentence.Sentence;
 import reading.speed.improver.exercises.text.appearence.emerging.EmergingTextExercise;
 import reading.speed.improver.exercises.materials.Text;
 import reading.speed.improver.exercises.materials.Word;
 import reading.speed.improver.exercises.schulte.table.SchulteExercise;
 import reading.speed.improver.exercises.text.appearence.fading.FadingTextExercise;
+import reading.speed.improver.exercises.text.misplaced.spaces.MisplacedSpacesExercise;
+import reading.speed.improver.exercises.text.spaceless.SpacelessTextExercise;
+import reading.speed.improver.exercises.word.appearence.EmergingWordsExercise;
+import reading.speed.improver.repository.exercises.Exercises;
+import reading.speed.improver.repository.exercises.ExercisesRepository;
 import reading.speed.improver.user.pupil.Pupil;
 
 import java.util.List;
@@ -22,13 +28,14 @@ public class ChitaloidRepository {
     private ExercisesRepository exercisesRepository;
     private TextsRepository textsRepository;
     private WordsRepository wordsRepository;
+    private SentenceRepository sentenceRepository;
 
     public static ChitaloidRepository getInstance() {
         return ourInstance;
     }
 
     public void init(Context context) {
-        if(mAppDataBase!=null){
+        if (mAppDataBase != null) {
             return;
         }
         Context appContext = context;
@@ -38,21 +45,22 @@ public class ChitaloidRepository {
         exercisesRepository = new ExercisesRepository(mAppDataBase);
         textsRepository = new TextsRepository(mAppDataBase);
         wordsRepository = new WordsRepository(mAppDataBase);
+        sentenceRepository = new SentenceRepository(mAppDataBase);
     }
 
     public Pupil getCurrentPupil() {
         return pupilsRepository.getCurrentPupil();
     }
 
-    public void setCurrentPupil(Pupil pupil) {
+    public void setCurrentPupil(final Pupil pupil) {
         pupilsRepository.setCurrentPupil(pupil);
     }
 
-    public Pupil createPupil(String name) {
+    public Pupil createPupil(final String name) {
         return new Pupil(UUID.randomUUID().toString(), name);
     }
 
-    public void addPupil(Pupil pupil) {
+    public void addPupil(final Pupil pupil) {
         pupilsRepository.addPupil(pupil);
     }
 
@@ -68,39 +76,62 @@ public class ChitaloidRepository {
         return pupilsRepository.getPupilByName(name);
     }
 
+    public Sentence getRandomSentence() {
+        try {
+            return sentenceRepository.getRandomSentence();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Map<String, Exercises> getExercises() {
         return exercisesRepository.getExercises();
     }
 
 
-    public Class getExerciseActivity(final Exercises exercise) {
-        return exercisesRepository.getExerciseActivity(exercise);
+    public Class getExerciseActivity() {
+        return exercisesRepository.getExerciseActivity();
     }
 
-    public void createExerciseModel(final Exercises exercise) {
-        exercisesRepository.createExerciseModel(exercise);
+    public void setCurrentExercise(Exercises exercise) {
+        exercisesRepository.setCurrentExercise(exercise);
     }
 
-    public void invalidateCurrentExerciseModel() {
-        exercisesRepository.invalidateCurrentExerciseModel();
+    public void invalidateCurrentExercise() {
+        exercisesRepository.invalidateCurrentExercise();
     }
 
-    public SchulteExercise getSchulteExerciseModel() {
-
-        return exercisesRepository.getSchulteExercise();
+    public SchulteExercise createSchulteTableExercise() {
+        return exercisesRepository.createSchulteTableExercise();
     }
 
-    public EmergingTextExercise getEmergingTextExerciseModel() {
-
-        return exercisesRepository.getEmergingTextExercise();
+    public EmergingTextExercise createEmergingTextExercise() {
+        return exercisesRepository.createEmergingTextExercise();
     }
 
-    public FadingTextExercise getFadingTextExerciseModel(){
-        return exercisesRepository.getFadingTextExercise();
+    public FadingTextExercise createFadingTextExercise() {
+        return exercisesRepository.createFadingTextExercise();
+    }
+
+    public SpacelessTextExercise createSpacelessTextExercise() {
+        return exercisesRepository.createSpacelessTextExercise();
+    }
+
+    public MisplacedSpacesExercise createMisplacedSpacesExercise() {
+        return exercisesRepository.createMisplacedSpacesExercise();
+    }
+
+    public EmergingWordsExercise createEmergingWordsExercise() {
+        return exercisesRepository.createEmergingWordsExercise();
     }
 
     public Text getText(final int id) throws ExecutionException, InterruptedException {
         return textsRepository.getText(id);
+    }
+
+    public Word getRandomWord(final int amountOfLetters) throws ExecutionException, InterruptedException {
+        return wordsRepository.getRandomWord(amountOfLetters);
     }
 
     public int getTextCount() throws ExecutionException, InterruptedException {
@@ -115,5 +146,13 @@ public class ChitaloidRepository {
         return wordsRepository.getAllWords();
     }
 
+    public Sentence getRandomSentence(final int minAmountOfLetters, final int maxAmountOfLetters) {
+        try {
+            return sentenceRepository.getRandomSentenceInRange(minAmountOfLetters, maxAmountOfLetters);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }

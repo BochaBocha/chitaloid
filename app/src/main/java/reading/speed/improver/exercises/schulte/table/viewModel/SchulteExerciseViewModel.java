@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.AndroidViewModel;
 import org.jetbrains.annotations.NotNull;
 import reading.speed.improver.exercises.schulte.table.SchulteExercise;
-import reading.speed.improver.repository.ChitaloidRepository;
+import reading.speed.improver.service.ChitaloidService;
 
 public class SchulteExerciseViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> currentSeconds;
@@ -16,7 +16,8 @@ public class SchulteExerciseViewModel extends AndroidViewModel {
 
     public SchulteExerciseViewModel(@NotNull Application application) {
         super(application);
-        schulteExercise = ChitaloidRepository.getInstance().getSchulteExerciseModel();
+        ChitaloidService chitaloidService = new ChitaloidService();
+        schulteExercise = chitaloidService.createSchulteTableExercise();
         schulteExercise.startStopwatch();
         currentSeconds = schulteExercise.getElapsedSeconds();
         currentTextSizeCoeff = schulteExercise.getTextSizeCoeff();
@@ -27,9 +28,11 @@ public class SchulteExerciseViewModel extends AndroidViewModel {
     public MutableLiveData<Float> getCurrentTextSizeCoeff() {
         return currentTextSizeCoeff;
     }
+
     public MutableLiveData<Integer> getCurrentSeconds() {
         return currentSeconds;
     }
+
     public MutableLiveData<Integer> getCurrentNumber() {
         return currentNumber;
     }
@@ -42,7 +45,7 @@ public class SchulteExerciseViewModel extends AndroidViewModel {
         pauseDialogHidden = value;
     }
 
-    public void changeTextSize(final Float textSize){
+    public void changeTextSize(final Float textSize) {
         schulteExercise.changeTextSize(textSize);
     }
 
@@ -50,30 +53,30 @@ public class SchulteExerciseViewModel extends AndroidViewModel {
         return schulteExercise.isCurrentNumFound(row, column);
     }
 
-    public void increaseCurrentNum(){
+    public void increaseCurrentNum() {
         schulteExercise.increaseCurrentNum();
     }
 
-    public MutableLiveData<Integer[][]> getSchulteTable(){
-       return schulteExercise.getSchulteTable();
+    public MutableLiveData<Integer[][]> getSchulteTable() {
+        return schulteExercise.getSchulteTable();
     }
 
-
-    public void pauseStopwatch(){
+    public void pauseStopwatch() {
         schulteExercise.pauseStopwatch();
     }
 
-    public void startStopwatch(){
+    public void startStopwatch() {
         schulteExercise.startStopwatch();
     }
 
-    public void restartExercise(){
+    public void restartExercise() {
         schulteExercise.restartExercise();
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
-        ChitaloidRepository.getInstance().invalidateCurrentExerciseModel();
+        ChitaloidService chitaloidService = new ChitaloidService();
+        chitaloidService.invalidateCurrentExercise();
     }
 }

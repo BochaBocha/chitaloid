@@ -1,10 +1,18 @@
 package reading.speed.improver.service;
 
+import reading.speed.improver.exercises.materials.sentence.Sentence;
 import reading.speed.improver.exercises.materials.Text;
 import reading.speed.improver.exercises.materials.Word;
+import reading.speed.improver.exercises.materials.sentence.SentencesClassification;
+import reading.speed.improver.exercises.schulte.table.SchulteExercise;
+import reading.speed.improver.exercises.text.appearence.emerging.EmergingTextExercise;
+import reading.speed.improver.exercises.text.appearence.fading.FadingTextExercise;
+import reading.speed.improver.exercises.text.misplaced.spaces.MisplacedSpacesExercise;
+import reading.speed.improver.exercises.text.spaceless.SpacelessTextExercise;
+import reading.speed.improver.exercises.word.appearence.EmergingWordsExercise;
 import reading.speed.improver.repository.ChitaloidRepository;
+import reading.speed.improver.repository.exercises.Exercises;
 import reading.speed.improver.user.pupil.Pupil;
-import reading.speed.improver.utils.formatter.TextFormatter;
 
 import java.util.List;
 import java.util.Random;
@@ -12,6 +20,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class ChitaloidService {
+
     private ChitaloidRepository chitaloidRepository;
 
     public ChitaloidService() {
@@ -52,11 +61,66 @@ public class ChitaloidService {
             int count = chitaloidRepository.getTextCount();
             Random random = new Random();
             int id = random.nextInt(count) + 1;
-            TextFormatter textFormatter = new TextFormatter();
             return chitaloidRepository.getText(id);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Word getRandomWord(final int amountOfLetters) {
+        try {
+            return chitaloidRepository.getRandomWord(amountOfLetters);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Class getExerciseActivity() {
+        return chitaloidRepository.getExerciseActivity();
+    }
+
+    public void setCurrentExercise(Exercises exercise) {
+        chitaloidRepository.setCurrentExercise(exercise);
+    }
+
+    public void invalidateCurrentExercise() {
+        chitaloidRepository.invalidateCurrentExercise();
+    }
+
+    public SchulteExercise createSchulteTableExercise() {
+        return chitaloidRepository.createSchulteTableExercise();
+    }
+
+    public EmergingTextExercise createEmergingTextExercise() {
+        return chitaloidRepository.createEmergingTextExercise();
+    }
+
+    public FadingTextExercise createFadingTextExerciseModel() {
+        return chitaloidRepository.createFadingTextExercise();
+    }
+
+    public SpacelessTextExercise createSpacelessTextExercise() {
+        return chitaloidRepository.createSpacelessTextExercise();
+    }
+
+    public MisplacedSpacesExercise createMisplacedSpacesExercise() {
+        return chitaloidRepository.createMisplacedSpacesExercise();
+    }
+
+    public EmergingWordsExercise createEmergingWordsExercise() {
+        return chitaloidRepository.createEmergingWordsExercise();
+    }
+
+    public Sentence getRandomSentence() {
+        return chitaloidRepository.getRandomSentence();
+    }
+
+    public Sentence getRandomSentence(final SentencesClassification sentencesClassification) {
+        return chitaloidRepository.getRandomSentence(
+                sentencesClassification.getMinAmountOfLetters(),
+                sentencesClassification.getMaxAmountOfLetters()
+        );
     }
 }

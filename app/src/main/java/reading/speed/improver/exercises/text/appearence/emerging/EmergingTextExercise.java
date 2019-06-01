@@ -1,10 +1,11 @@
 package reading.speed.improver.exercises.text.appearence.emerging;
 
 import androidx.lifecycle.MutableLiveData;
-import reading.speed.improver.exercises.text.appearence.params.EmergingTextExerciseParams;
-import reading.speed.improver.exercises.text.appearence.timer.Timer;
-import reading.speed.improver.exercises.text.appearence.timer.TimerObserver;
+import reading.speed.improver.exercises.params.DefaultExerciseParams;
+import reading.speed.improver.exercises.components.timer.Timer;
+import reading.speed.improver.exercises.components.timer.TimerObserver;
 
+import java.sql.Time;
 import java.util.UUID;
 
 public class EmergingTextExercise implements TimerObserver {
@@ -20,7 +21,7 @@ public class EmergingTextExercise implements TimerObserver {
     private MutableLiveData<Integer> currentSpeed;
     private MutableLiveData<Float> textSizeCoeff;
 
-    public EmergingTextExercise(EmergingTextExerciseParams params) {
+    public EmergingTextExercise(DefaultExerciseParams params) {
         name = params.getName();
         defaultTextSizeCoeff = params.getDefaultTextSizeCoeff();
         id = UUID.randomUUID();
@@ -32,9 +33,6 @@ public class EmergingTextExercise implements TimerObserver {
         currentSpeed.setValue(defaultSpeed);
         autoScroll = new MutableLiveData<>();
         autoScroll.setValue(true);
-        timer = new Timer(calcMillis());
-
-        timer.registerObserver(this);
         emergingText = new EmergingText();
     }
 
@@ -47,7 +45,7 @@ public class EmergingTextExercise implements TimerObserver {
     } //words in second
 
     private long calcMillis() {
-        return 1000 / Math.round(currentSpeed.getValue()/60);
+        return 1000 / Math.round(currentSpeed.getValue() / 60);
     }
 
     public String getName() {
@@ -72,7 +70,6 @@ public class EmergingTextExercise implements TimerObserver {
 
     public void setSpeed(int speed) {
         currentSpeed.setValue(speed);
-        timer.setDelayMillis(calcMillis());
     }
 
     public void setAutoScrollOption(final Boolean autoScrollOption) {
@@ -81,24 +78,34 @@ public class EmergingTextExercise implements TimerObserver {
 
     @Override
     public void getTimeExceededNotification() {
-        if(emergingText.hasCompletelyEmerged()){
+        if (emergingText.hasCompletelyEmerged()) {
             emergingText = new EmergingText();
         }
         currentText.setValue(emergingText.getEmergedText());
     }
 
     public void pauseTimer() {
+        timer.removeObserver(this);
         timer.pause();
+        timer = null;
     }
 
     public void startTimer() {
+        createTimer();
+    }
+
+    private void createTimer() {
+        if (timer != null) {
+            timer.removeObserver(this);
+            timer.pause();
+        }
+        timer = new Timer(calcMillis());
+        timer.registerObserver(this);
         timer.start();
     }
 
-
     public void restartExercise() {
-        timer.reset();
-        timer.start();
+        createTimer();
         currentText.setValue("");
         emergingText = new EmergingText();
     }

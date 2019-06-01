@@ -1,4 +1,4 @@
-package reading.speed.improver.exercises.text.appearence.timer;
+package reading.speed.improver.exercises.components.timer;
 
 public interface TimerObserver {
     void getTimeExceededNotification();

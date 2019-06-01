@@ -1,4 +1,4 @@
-package reading.speed.improver.exercises.text.appearence.timer;
+package reading.speed.improver.exercises.components.timer;
 
 public interface ObservableTimer {
         void registerObserver(TimerObserver timerObserver);

@@ -105,7 +105,7 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
     }
 
     private void initSpeedSeekBar() {
-        speedSeekBar.setMax(35);
+        speedSeekBar.setMax(50);
         speedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
