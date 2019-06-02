@@ -11,12 +11,13 @@ public class Pupil {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     @NotNull
-    public Integer _id = 0;
+    public Integer _id;
     @ColumnInfo(name = "name")
     @NotNull
     public String name;
 
-    public Pupil(String name){
+    public Pupil(Integer _id, String name){
+        this._id = _id;
         this.name = name;
     }
 }

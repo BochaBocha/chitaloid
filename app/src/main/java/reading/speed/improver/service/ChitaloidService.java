@@ -39,11 +39,12 @@ public class ChitaloidService {
     }
 
     public Pupil createPupil(String name) {
-        return new Pupil(name);
+        return new Pupil(null, name);
     }
 
     public void addPupil(Pupil pupil) {
         chitaloidRepository.addPupil(pupil);
+
     }
 
     public List<Pupil> getPupils() {
@@ -51,6 +52,15 @@ public class ChitaloidService {
             return chitaloidRepository.getPupils();
         } catch (ExecutionException | InterruptedException e) {
             System.out.println((e.getStackTrace()));
+            return null;
+        }
+    }
+
+    public Pupil getPupilByName(String name) {
+        try {
+            return chitaloidRepository.getPupilByName(name);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -137,7 +147,7 @@ public class ChitaloidService {
         chitaloidRepository.insertStatistic(statistic);
     }
 
-    public void deleteStatistics(Pupil pupil){
+    public void deleteStatistics(Pupil pupil) {
         chitaloidRepository.deleteStatistic(pupil._id);
     }
 

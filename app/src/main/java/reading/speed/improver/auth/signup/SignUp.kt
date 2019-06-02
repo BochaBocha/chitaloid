@@ -36,7 +36,7 @@ class SignUp : AppCompatActivity() {
         val chitaloidService : ChitaloidService = ChitaloidService()
         var pupil: Pupil = chitaloidService.createPupil(name.toString())
         chitaloidService.addPupil(pupil)
-        chitaloidService.currentPupil = pupil
+        chitaloidService.currentPupil = chitaloidService.getPupilByName(pupil.name)
 
         val intent = Intent(this, PupilMainScreen::class.java)
         startActivity(intent)

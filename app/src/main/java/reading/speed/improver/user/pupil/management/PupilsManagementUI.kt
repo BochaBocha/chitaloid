@@ -1,5 +1,6 @@
 package reading.speed.improver.user.pupil.management
 
+import android.graphics.Color
 import android.os.Build
 import android.view.Gravity
 import android.view.View
@@ -9,8 +10,9 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.sdk27.coroutines.onItemLongClick
 import org.jetbrains.anko.design.floatingActionButton
+import org.jetbrains.anko.sdk27.coroutines.onItemClick
+import reading.speed.improver.R
 import reading.speed.improver.user.pupil.Pupil
 import reading.speed.improver.utils.ValidationResult
 import reading.speed.improver.utils.isUserNameValid
@@ -32,7 +34,7 @@ class PupilsManagementUI(val pupilsAdapter: PupilsAdapter) : AnkoComponent<Pupil
             verticalLayout {
                 pupilsList = listView {
                     adapter = pupilsAdapter
-                    onItemLongClick { adapterView, view, i, l ->
+                    onItemClick { adapterView, view, i, l ->
                         val options = listOf("Посмотреть статистику", "Очистить статистику", "Удалить")
                         selector("Опции", options) { DialogInterface, j ->
                             if(j==0){

@@ -27,7 +27,7 @@ public class PupilsRepository {
     }
 
     public Pupil createPupil(String name) {
-        return new Pupil(name);
+        return new Pupil(null, name);
     }
 
     void addPupil(final Pupil pupil) {

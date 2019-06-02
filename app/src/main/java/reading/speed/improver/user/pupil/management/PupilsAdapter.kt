@@ -46,8 +46,9 @@ class PupilsAdapter(var list: ArrayList<Pupil> = ArrayList()) : BaseAdapter() {
 
     fun add(text: String) {
         val chitaloidService: ChitaloidService = ChitaloidService()
-        val pupil: Pupil = chitaloidService.createPupil(text)
+        var pupil: Pupil = chitaloidService.createPupil(text)
         chitaloidService.addPupil(pupil)
+        pupil = chitaloidService.getPupilByName(pupil.name)
         list.add(list.size, pupil)
         notifyDataSetChanged()
     }

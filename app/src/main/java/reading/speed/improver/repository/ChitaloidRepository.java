@@ -59,7 +59,7 @@ public class ChitaloidRepository {
     }
 
     public Pupil createPupil(final String name) {
-        return new Pupil(name);
+        return new Pupil(null, name);
     }
 
     public void addPupil(final Pupil pupil) {

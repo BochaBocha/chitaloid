@@ -1,21 +1,22 @@
 package reading.speed.improver.user.pupil.exercise.selection
 
-import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.button
+import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.verticalLayout
 import reading.speed.improver.repository.ChitaloidRepository
+import reading.speed.improver.style.DefaultStyle
 
 class ExerciseSelectionScreenUI : AnkoComponent<ExerciseSelectionScreen> {
     override fun createView(ui: AnkoContext<ExerciseSelectionScreen>) = with(ui) {
-        verticalLayout {
-
-            for ((exercise_title, value) in ChitaloidRepository.getInstance().exercises) {
-                button(exercise_title) { onClick {
-                    owner.onSelectExercise(value)
-                } }
-            }
+        scrollView {
+            verticalLayout {
+                for ((exercise_title, value) in ChitaloidRepository.getInstance().exercises) {
+                    button(exercise_title) {
+                        onClick {
+                            owner.onSelectExercise(value)
+                        }
+                    }
+                }
+            }.applyRecursively(DefaultStyle)
         }
     }
 }

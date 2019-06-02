@@ -18,7 +18,7 @@ public class FadingText {
     private int absolutePosition;
     private int initialTextArraySize;
     private final int DISPLAYED_WORDS = 40;
-    private final int WORDS_DELAY = 2;
+    private final int WORDS_DELAY = 1;
     private int wordsDelayCount;
 
     public FadingText() {

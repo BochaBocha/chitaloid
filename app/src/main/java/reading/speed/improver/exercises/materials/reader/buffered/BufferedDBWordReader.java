@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class BufferedDBWordReader {
     private ArrayList<Word> words;
     private int amountOfLetters;
-    private final int BUFFER_SIZE = 100;
+    private final int BUFFER_SIZE = 20;
 
     public BufferedDBWordReader(final int amountOfLetters) {
         this.amountOfLetters = amountOfLetters;

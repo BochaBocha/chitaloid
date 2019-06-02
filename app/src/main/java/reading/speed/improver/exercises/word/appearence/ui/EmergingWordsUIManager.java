@@ -18,7 +18,7 @@ public class EmergingWordsUIManager {
         scrollView = this.exerciseActivity.findViewById(R.id.exercise_scroll_view);
         textView = scrollView.findViewById(R.id.text_view);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                exerciseActivity.getResources().getDimension(R.dimen.default_exercise_font_size) * textSizeCoeff);
+                exerciseActivity.getResources().getDimension(R.dimen.word_exercise_font_size) * textSizeCoeff);
     }
 
     public void setText(final String text) {
