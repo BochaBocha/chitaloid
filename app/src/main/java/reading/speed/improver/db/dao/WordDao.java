@@ -11,16 +11,6 @@ public interface WordDao {
     @Query("SELECT * FROM Word")
     List<Word> getAll();
 
-    @Query("SELECT * FROM Word WHERE LENGTH(content)=:amountOfLetters order by Random() limit 1;")
+    @Query("SELECT * FROM Word WHERE LENGTH(content)=:amountOfLetters ORDER BY Random() LIMIT 1;")
     Word getRandom(Integer amountOfLetters);
-
-    @Insert
-    void insert(Word word);
-
-    @Update
-    void update(Word word);
-
-    @Delete
-    void delete(Word word);
-
 }
