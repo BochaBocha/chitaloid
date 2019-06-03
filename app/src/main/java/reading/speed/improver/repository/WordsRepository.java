@@ -15,11 +15,12 @@ public class WordsRepository {
         this.mAppDataBase = mAppDataBase;
     }
 
-    public Word getRandomWord(final int amountOfLetters) throws ExecutionException, InterruptedException {
-        return new  getTextAsyncTask(mAppDataBase.getWordDao()).execute(amountOfLetters).get();
+    public Word getRandomWord(final int amountOfLetters) 
+        throws ExecutionException, InterruptedException {
+        return new  getRandomWordAsyncTask(mAppDataBase.getWordDao()).execute(amountOfLetters).get();
     }
-
-    private static class getTextAsyncTask extends AsyncTask<Integer, Void, Word> {
+    ...
+    private static class getRandomWordAsyncTask extends AsyncTask<Integer, Void, Word> {
 
         private WordDao mAsyncTaskDao;
 
