@@ -17,10 +17,10 @@ public class WordsRepository {
 
     public Word getRandomWord(final int amountOfLetters) 
         throws ExecutionException, InterruptedException {
-        return new  getRandomWordAsyncTask(mAppDataBase.getWordDao()).execute(amountOfLetters).get();
+        return new  getTextAsyncTask(mAppDataBase.getWordDao()).execute(amountOfLetters).get();
     }
-    ...
-    private static class getRandomWordAsyncTask extends AsyncTask<Integer, Void, Word> {
+    
+    private static class getTextdAsyncTask extends AsyncTask<Integer, Void, Word> {
 
         private WordDao mAsyncTaskDao;
 
