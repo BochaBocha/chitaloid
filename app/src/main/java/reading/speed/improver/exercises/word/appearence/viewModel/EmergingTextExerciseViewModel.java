@@ -14,7 +14,8 @@ public class EmergingWordsExerciseViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> amountOfLetters;
     private EmergingWordsExercise emergingWordsExercise;
     private boolean pauseDialogHidden;
-
+    ...
+        
     public EmergingWordsExerciseViewModel(@NotNull Application application) {
         super(application);
         ChitaloidService chitaloidService = new ChitaloidService();
