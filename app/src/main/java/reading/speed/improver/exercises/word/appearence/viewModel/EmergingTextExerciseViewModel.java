@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import reading.speed.improver.exercises.word.appearence.EmergingWordsExercise;
 import reading.speed.improver.service.ChitaloidService;
 
-public class EmergingTextExerciseViewModel extends AndroidViewModel {
+public class EmergingWordsExerciseViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> currentSpeed;
     private MutableLiveData<String> currentText;
     private MutableLiveData<Float> currentTextSizeCoeff;
@@ -15,7 +15,7 @@ public class EmergingTextExerciseViewModel extends AndroidViewModel {
     private EmergingWordsExercise emergingWordsExercise;
     private boolean pauseDialogHidden;
 
-    public EmergingTextExerciseViewModel(@NotNull Application application) {
+    public EmergingWordsExerciseViewModel(@NotNull Application application) {
         super(application);
         ChitaloidService chitaloidService = new ChitaloidService();
         emergingWordsExercise = chitaloidService.createEmergingWordsExercise();
