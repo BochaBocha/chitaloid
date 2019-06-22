@@ -83,4 +83,24 @@
     <string name="exercise_menu_title">Меню</string>
     <string name="exercise_settings_speed_label">Скорость</string>
     <string name="title_activity_pupil_statistics">PupilStatisticsActivity</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Создать аккаунт</string>
+    <string name="i_am_a_teacher">Я учитель</string>
+    <string name="app_title">Читалоид</string>
+    <string name="manage_account_title">Управление аккаунтами</string>
+    <string name="exercise_selection_title">Упражнения</string>
+    <string name="pupil_statistic_title">Статистика</string>
+    <string name="quit_pupil_title">Выйти из учетной записи</string>
+    <string name="pupil_welcome_title">Добро пожаловать, %1$s!</string>
+    <string name="pupil_selection_confirmation">Выбрать пользователя %1$s?</string>
+    <string name="cancel">отмена</string>
+    <string name="create_pupil_title">Создание нового пользователя</string>
+    <string name="create_pupil_input_hint">Имя</string>
+    <string name="pupil_options_title">Опции</string>
+    <string name="show_statistic_title">Показать статистику</string>
+    <string name="delete_statistic_title">Удалить статистику</string>
+    <string name="delete_pupil_title">Удалить аккаунт</string>
+    <string name="no_pupils_found">Нет зарегистрированных пользователей</string>
+    <string name="name_is_too_short">Слишком короткое имя пользователя</string>
+    <string name="name_is_already_taken">Пользователь с таким именем уже существует</string>
 </resources>

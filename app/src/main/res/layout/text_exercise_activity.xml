@@ -19,7 +19,7 @@
                     android:text="@string/exercise_menu_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/menu_button"
-                    style="@style/Widget.AppCompat.Button.Borderless"/>
+                    style="@style/BorderlessButtonStyle"/>
             <Space
                     android:layout_width="50dp"
                     android:layout_height="34dp" android:layout_weight="1"/>
@@ -48,11 +48,10 @@
                         android:text="следующий текст"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center"
-                        android:paddingLeft="5sp"
-                        android:paddingRight="5sp"
+                        android:background="@drawable/oval_button_blue"
                         android:layout_height="wrap_content" android:id="@+id/get_next_text" android:layout_weight="1"
-                        style="@android:style/Widget.DeviceDefault.Button.Borderless"
-                        android:background="#22BF5C"/>
+
+                />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

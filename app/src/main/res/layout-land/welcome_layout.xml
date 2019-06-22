@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_gravity="center"
+              android:orientation="horizontal" android:id="@+id/linearLayout3">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="1">
+
+        <TextView
+                android:text="@string/app_title"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textAllCaps ="true"
+                android:textColor="@color/colorFunkyPrimaryGray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/textView" android:layout_weight="1"
+                android:textSize="36sp" app:fontFamily="sans-serif-black" android:typeface="normal"
+                tools:text="ЧИТАЛОИД"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="52dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout2" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+        >
+            <Button
+                    android:text="@string/sign_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/oval_button_green"
+                    android:id="@+id/sign_in_btn"
+            />
+            <Button
+                    android:text="@string/sign_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/oval_button_red"
+                    android:id="@+id/sign_up_btn"
+            />
+            <Button
+                    android:text="@string/i_am_a_teacher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/oval_button_purple"
+                    android:id="@+id/i_am_a_teacher_btn"
+            />
+        </LinearLayout>
+        <ImageView
+                android:layout_width="151dp"
+                android:layout_height="180dp" app:srcCompat="@drawable/robot_6" android:id="@+id/imageView2"
+                android:adjustViewBounds="true" android:cropToPadding="false" android:scaleType="centerInside"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="43dp"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout2" android:layout_marginRight="43dp"
+                android:layout_marginStart="32dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="32dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

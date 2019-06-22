@@ -5,8 +5,10 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 @Entity(tableName = "Pupil")
-public class Pupil {
+public class Pupil implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
@@ -16,7 +18,7 @@ public class Pupil {
     @NotNull
     public String name;
 
-    public Pupil(Integer _id, String name){
+    public Pupil(@NotNull Integer _id, @NotNull String name){
         this._id = _id;
         this.name = name;
     }

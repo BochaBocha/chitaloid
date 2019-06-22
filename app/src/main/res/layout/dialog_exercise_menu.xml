@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:padding="10dp"
+              android:padding="5dp"
               android:keepScreenOn="false"
-              android:layout_width="wrap_content"
+              android:layout_width="140dp"
               android:layout_height="wrap_content">
     <Button
             android:text="Продолжить"
+            android:background="@drawable/oval_button_orange"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content" android:id="@+id/button_continue"/>
     <Button
             android:text="Начать заново"
+            android:background="@drawable/oval_button_yellow"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content" android:id="@+id/button_restart"/>
     <Button
             android:text="Настройки"
+            android:background="@drawable/oval_button_blue"
             android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content" android:id="@+id/button_settings"/>
     <Button
             android:text="Выйти"
+            android:background="@drawable/oval_button_gray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/button_exit"/>
 </LinearLayout>

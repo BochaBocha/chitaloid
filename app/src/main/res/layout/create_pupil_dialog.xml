@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:padding="20dp">
 
+    <TextView
+            android:text="@string/create_pupil_title"
+            android:layout_width="191dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/create_pupil_title" android:textSize="18sp"/>
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/create_pupil_input" app:hintEnabled="false"
+            app:hintTextAppearance="@style/TextAppearance.AppCompat">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/create_pupil_input_hint" android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <Button
+                android:text="@string/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/create_pupil_cancel_btn"
+                android:layout_weight="1"/>
+        <Button
+                android:text="@string/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/create_pupil_ok_btn" android:layout_weight="1"/>
+    </LinearLayout>
 </LinearLayout>

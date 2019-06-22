@@ -34,5 +34,6 @@
     <Button
             android:text="@string/ok"
             android:layout_width="match_parent"
+            android:background="@drawable/oval_button_green"
             android:layout_height="wrap_content" android:id="@+id/button_ok"/>
 </LinearLayout>

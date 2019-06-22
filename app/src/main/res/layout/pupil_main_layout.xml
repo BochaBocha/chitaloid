@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:paddingTop="30dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:id="@+id/linearLayout5" android:gravity="center_horizontal">
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_height="17dp" android:id="@+id/pupil_welcome_textView"
+            android:textStyle="bold"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="141dp" app:srcCompat="@drawable/robot_4_head" android:id="@+id/imageView3"
+    />
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:gravity="center_horizontal">
+        <Button
+                android:text="@string/exercise_selection_title"
+                android:background="@drawable/oval_button_green"
+                android:layout_marginBottom="5dp"
+                android:layout_height="wrap_content" android:id="@+id/exercise_selection_btn"
+                android:layout_width="match_parent"/>
+        <Button
+                android:text="@string/pupil_statistic_title"
+                android:background="@drawable/oval_button_yellow"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/statistic_btn"/>
+        <Button
+                android:text="@string/quit_pupil_title"
+                android:background="@drawable/oval_button_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/quit_btn"
+        />
+    </LinearLayout>
+</LinearLayout>

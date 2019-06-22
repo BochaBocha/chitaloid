@@ -1,3 +1,8 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="schulte_table_font_size">23sp</dimen>
+    <dimen name="default_exercise_font_size">16sp</dimen>
+    <dimen name="word_exercise_font_size">20sp</dimen>
+    <dimen name="schulte_table_cell_padding">10dp</dimen>
+    <dimen name="schulte_table_border">1dp</dimen>
 </resources>

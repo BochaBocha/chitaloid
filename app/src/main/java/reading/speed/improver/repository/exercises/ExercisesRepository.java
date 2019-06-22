@@ -3,13 +3,12 @@ package reading.speed.improver.repository.exercises;
 import android.os.AsyncTask;
 import reading.speed.improver.db.AppDatabase;
 import reading.speed.improver.db.dao.ExerciseDao;
-import reading.speed.improver.exercises.Exercise;
-import reading.speed.improver.exercises.text.appearence.emerging.EmergingTextExercise;
-import reading.speed.improver.exercises.text.appearence.fading.FadingTextExercise;
-import reading.speed.improver.exercises.text.appearence.fading.ui.FadingTextExerciseActivity;
+import reading.speed.improver.exercises.text.appearance.emerging.EmergingTextExercise;
+import reading.speed.improver.exercises.text.appearance.fading.FadingTextExercise;
+import reading.speed.improver.exercises.text.appearance.fading.ui.FadingTextExerciseActivity;
 import reading.speed.improver.exercises.params.DefaultExerciseParams;
 import reading.speed.improver.exercises.params.DefaultExerciseParamsBuilder;
-import reading.speed.improver.exercises.text.appearence.emerging.ui.EmergingTextExerciseActivity;
+import reading.speed.improver.exercises.text.appearance.emerging.ui.EmergingTextExerciseActivity;
 import reading.speed.improver.exercises.schulte.table.SchulteExercise;
 import reading.speed.improver.exercises.schulte.table.params.SchulteTableExerciseParams;
 import reading.speed.improver.exercises.schulte.table.params.SchulteTableExerciseParamsBuilder;
@@ -18,8 +17,8 @@ import reading.speed.improver.exercises.text.misplaced.spaces.MisplacedSpacesExe
 import reading.speed.improver.exercises.text.misplaced.spaces.ui.MisplacedSpacesExerciseActivity;
 import reading.speed.improver.exercises.text.spaceless.SpacelessTextExercise;
 import reading.speed.improver.exercises.text.spaceless.ui.SpacelessTextExerciseActivity;
-import reading.speed.improver.exercises.word.appearence.EmergingWordsExercise;
-import reading.speed.improver.exercises.word.appearence.ui.EmergingWordsExerciseActivity;
+import reading.speed.improver.exercises.word.appearance.EmergingWordsExercise;
+import reading.speed.improver.exercises.word.appearance.ui.EmergingWordsExerciseActivity;
 
 import java.util.HashMap;
 import java.util.Map;

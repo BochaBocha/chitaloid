@@ -12,44 +12,51 @@
         <activity
                 android:name=".user.teacher.PupilStatisticsActivity"
                 android:label="Статистика"
-                android:parentActivityName=".user.pupil.management.PupilsManagement">
+                android:parentActivityName=".user.pupil.management.PupilsManagementActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="reading.speed.improver.user.pupil.management.PupilsManagement"/>
+                    android:value="reading.speed.improver.user.pupil.management.PupilsManagementActivity"/>
         </activity>
         <activity
                 android:name=".user.pupil.statistic.PupilStatisticsActivity"
                 android:label="Статистика"
-                android:parentActivityName=".user.pupil.PupilMainScreen">
+                android:parentActivityName=".user.pupil.PupilMainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="reading.speed.improver.user.pupil.PupilMainScreen"/>
+                    android:value="reading.speed.improver.user.pupil.PupilMainActivity"/>
         </activity>
         <activity
                 android:name=".exercises.schulte.table.ui.SchulteExerciseActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize">
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:theme="@style/FunkyKidsStyle">
         </activity>
         <activity
-                android:name=".exercises.text.appearence.emerging.ui.EmergingTextExerciseActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize">
+                android:name=".exercises.text.appearance.emerging.ui.EmergingTextExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:theme="@style/FunkyKidsStyle">
         </activity>
         <activity
-                android:name=".exercises.text.appearence.fading.ui.FadingTextExerciseActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize">
+                android:name=".exercises.text.appearance.fading.ui.FadingTextExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:theme="@style/FunkyKidsStyle">
         </activity>
         <activity
                 android:name=".exercises.text.spaceless.ui.SpacelessTextExerciseActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize">
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:theme="@style/FunkyKidsStyle">
         </activity>
         <activity
                 android:name=".exercises.text.misplaced.spaces.ui.MisplacedSpacesExerciseActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize">
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:theme="@style/FunkyKidsStyle">
         </activity>
         <activity
-                android:name=".exercises.word.appearence.ui.EmergingWordsExerciseActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize">
+                android:name=".exercises.word.appearance.ui.EmergingWordsExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:theme="@style/FunkyKidsStyle">
         </activity>
-        <activity android:name=".Chitaloid">
+        <activity android:name=".Chitaloid"
+                  android:theme="@style/FunkyKidsStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -57,7 +64,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".user.teacher.TeacherMainScreen"
+                android:name=".user.teacher.TeacherMainActivity"
                 android:label="Окно учителя"
                 android:parentActivityName=".Chitaloid">
             <meta-data
@@ -65,37 +72,41 @@
                     android:value="reading.speed.improver.Chitaloid"/>
         </activity>
         <activity
-                android:name=".auth.signin.SignIn"
+                android:name=".auth.signin.SignInActivity"
                 android:label="Выбор учетной записи"
-                android:parentActivityName=".Chitaloid">
+                android:parentActivityName=".Chitaloid"
+                android:theme="@style/FunkyKidsStyle">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="reading.speed.improver.Chitaloid"/>
         </activity>
         <activity
-                android:name=".auth.signup.SignUp"
+                android:name=".auth.signup.SignUpActivity"
                 android:label="Создание учетной записи"
-                android:parentActivityName=".Chitaloid">
+                android:parentActivityName=".Chitaloid"
+                android:theme="@style/FunkyKidsStyle">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="reading.speed.improver.Chitaloid"/>
         </activity>
-        <activity android:name=".user.pupil.PupilMainScreen"/>
+        <activity android:name=".user.pupil.PupilMainActivity"
+                  android:theme="@style/FunkyKidsStyle"/>
         <activity
-                android:name=".user.pupil.management.PupilsManagement"
+                android:name=".user.pupil.management.PupilsManagementActivity"
                 android:label="Управление аккаунтами"
-                android:parentActivityName=".user.teacher.TeacherMainScreen">
+                android:parentActivityName=".user.teacher.TeacherMainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="reading.speed.improver.user.teacher.TeacherMainScreen"/>
+                    android:value="reading.speed.improver.user.teacher.TeacherMainActivity"/>
         </activity>
         <activity
-                android:name=".user.pupil.exercise.selection.ExerciseSelectionScreen"
+                android:name=".user.pupil.exercise.selection.ExerciseSelectionActivity"
                 android:label="Выбор упражнения"
-                android:parentActivityName=".user.pupil.PupilMainScreen">
+                android:parentActivityName=".user.pupil.PupilMainActivity"
+                android:theme="@style/FunkyKidsStyle">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="reading.speed.improver.user.pupil.PupilMainScreen"/>
+                    android:value="reading.speed.improver.user.pupil.PupilMainActivity"/>
         </activity>
     </application>
 

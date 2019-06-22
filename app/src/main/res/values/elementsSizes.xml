@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="schulte_table_cell_padding">10sp</dimen>
-    <dimen name="schulte_table_border">1sp</dimen>
-</resources>

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1B9BF6</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#6B3A4F</color>
     <color name="colorAccent">#FC687B</color>
+    <color name="colorFunkyPrimaryBlue">#7BD4DC</color>
+    <color name="colorFunkyPrimaryYellow">#EFB321</color>
+    <color name="colorFunkyPrimaryRed">#DA433A</color>
+    <color name="colorFunkyPrimaryGreen">#23BA6B</color>
+    <color name="colorFunkyPrimaryPurple">#6B3A4F</color>
+    <color name="colorFunkyPrimaryOrange">#D5371A</color>
+    <color name="colorFunkyPrimaryGray">#32353A</color>
 </resources>
