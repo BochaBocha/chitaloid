@@ -20,8 +20,6 @@
         <Button
                 android:text="@string/cancel"
                 android:layout_width="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
                 android:background="@drawable/oval_button_gray"
                 android:layout_height="wrap_content" android:id="@+id/sign_in_cancel_btn"
                 />

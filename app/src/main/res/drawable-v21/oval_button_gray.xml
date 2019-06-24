@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        android:color="?android:colorControlHighlight">
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android">
             <corners android:radius="10dp" />
             <stroke android:color="@color/colorFunkyPrimaryGray" android:width="3dp" />
-            <solid android:color="@color/colorFunkyPrimaryGreen" />
+            <solid android:color="@color/colorFunkyPrimaryGray" />
         </shape></item>
-</selector>
+</ripple>

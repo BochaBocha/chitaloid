@@ -1,29 +1,25 @@
 package reading.speed.improver.auth.signin
 
-import android.annotation.TargetApi
 import android.content.Intent
-import android.graphics.drawable.GradientDrawable
-import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.ScrollView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import org.jetbrains.anko.Orientation
-import org.jetbrains.anko.custom.style
-import org.jetbrains.anko.textColor
 import reading.speed.improver.R
 import reading.speed.improver.repository.ChitaloidRepository
 import reading.speed.improver.user.pupil.Pupil
 import reading.speed.improver.user.pupil.PupilMainActivity
+import reading.speed.improver.user.pupil.PupilsAdapter
 
-class SignInActivity : AppCompatActivity(), SignInConfirmationDialog.SignInConfirmationDialogListener {
+class SignInActivity : AppCompatActivity(), SignInConfirmationDialog.SignInConfirmationDialogListener,
+    PupilsAdapter.PupilsAdapterListener {
+    override fun onPupilClick(pupil: Pupil?) {
+        showConfirmationDialog(pupil!!)
+    }
+
     private lateinit var pupils: List<Pupil>
+    private lateinit var pupilsAdapter: PupilsAdapter
     override fun onOkClick(dialog: DialogFragment?, pupil: Pupil) {
         dialog?.dismiss()
         completeSignIn(pupil)
@@ -33,35 +29,34 @@ class SignInActivity : AppCompatActivity(), SignInConfirmationDialog.SignInConfi
         dialog?.dismiss()
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.sign_in_layout)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        val linearLayout : LinearLayout = findViewById(R.id.pupils_linearLayout)
+        val listView: ListView = findViewById(R.id.pupils_listView)
+
         //TODO: get pupils through pupils service
         pupils = ChitaloidRepository.getInstance().pupils
-        if(pupils.isEmpty()){
-            val noPupilTextView  = TextView(this)
-            noPupilTextView.text = resources.getString(R.string.no_pupils_found)
-            linearLayout.addView(noPupilTextView)
+        if (pupils.size == 0) {
+            showNoPupilsFoundTextView()
             return
         }
-        for (pupil in pupils) {
-            val exerciseButton = Button(this)
-            exerciseButton.background = resources.getDrawable(R.drawable.list_button)
-            exerciseButton.textColor = resources.getColor(R.color.colorFunkyPrimaryGray)
-            exerciseButton.text = pupil.name
-            exerciseButton.setOnClickListener { showConfirmationDialog(pupil) }
-            linearLayout.addView(exerciseButton)
-        }
+        pupilsAdapter = PupilsAdapter(this, R.layout.list_pupil, pupils)
+        listView.adapter = pupilsAdapter
+        pupilsAdapter.subscribeListener(this)
 
     }
 
+    private fun showNoPupilsFoundTextView() {
+        val ltInflater = layoutInflater
+        val linearLayout: LinearLayout = findViewById(R.id.pupils_linearLayout)
+        val view = ltInflater.inflate(R.layout.no_pupils_found_view, linearLayout, true)
+    }
+
     private fun showConfirmationDialog(pupil: Pupil) {
-        var bundle = Bundle()
+        val bundle = Bundle()
         bundle.putSerializable("pupil", pupil)
-        var signInConfirmationDialog = SignInConfirmationDialog()
+        val signInConfirmationDialog = SignInConfirmationDialog()
         signInConfirmationDialog.arguments = bundle
         signInConfirmationDialog.show(supportFragmentManager, null)
     }

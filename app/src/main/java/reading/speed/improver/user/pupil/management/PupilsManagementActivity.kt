@@ -1,26 +1,29 @@
 package reading.speed.improver.user.pupil.management
 
-import android.annotation.TargetApi
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.jetbrains.anko.textColor
 import org.jetbrains.anko.toast
 import reading.speed.improver.R
 import reading.speed.improver.repository.ChitaloidRepository
 import reading.speed.improver.service.ChitaloidService
 import reading.speed.improver.user.pupil.Pupil
+import reading.speed.improver.user.pupil.PupilsAdapter
 import reading.speed.improver.user.teacher.PupilStatisticsActivity
 
+
 class PupilsManagementActivity : AppCompatActivity(), CreatePupilDialog.CreatePupilDialogListener,
-    PupilOptionsDialog.PupilOptionsDialogListener {
+    PupilOptionsDialog.PupilOptionsDialogListener, PupilsAdapter.PupilsAdapterListener {
+
+    override fun onPupilClick(pupil: Pupil?) {
+        showPupilOptionsDialog(pupil!!)
+    }
 
     override fun onShowStatisticClick(dialog: DialogFragment?, pupil: Pupil) {
         startStatisticsScreen(pupil)
@@ -38,13 +41,16 @@ class PupilsManagementActivity : AppCompatActivity(), CreatePupilDialog.CreatePu
     }
 
     override fun onPupilCreatedClick(dialog: DialogFragment?, pupil: Pupil) {
+        pupilsAdapter.add(pupil)
+        updatePupilsList()
         dialog?.dismiss()
-        updatePupilsButtons()
     }
 
     override fun onCancelClick(dialog: DialogFragment?) {
         dialog?.dismiss()
     }
+
+    private lateinit var pupilsAdapter: PupilsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,29 +58,33 @@ class PupilsManagementActivity : AppCompatActivity(), CreatePupilDialog.CreatePu
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         val createPupilBtn: FloatingActionButton = findViewById(R.id.create_pupil_btn)
         createPupilBtn.setOnClickListener { showCreatePupilDialog() }
-        updatePupilsButtons()
 
+        val pupils: MutableList<Pupil> = ChitaloidRepository.getInstance().pupils
+        pupilsAdapter = PupilsAdapter(this, R.layout.list_pupil, pupils)
+        val listView: ListView = findViewById(R.id.pupils_listView)
+        listView.adapter = pupilsAdapter
+        pupilsAdapter.subscribeListener(this)
+        updatePupilsList()
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    private fun updatePupilsButtons() {
-        val linearLayout : LinearLayout = findViewById(R.id.pupils_linearLayout)
-        linearLayout.removeAllViewsInLayout()
+    private fun updatePupilsList() {
         val pupils = ChitaloidRepository.getInstance().pupils
-        if(pupils.size == 0){
-            val noPupilTextView  = TextView(this)
-            noPupilTextView.text = resources.getString(R.string.no_pupils_found)
-            linearLayout.addView(noPupilTextView)
-            return
+        if (pupils.size == 0) {
+            showNoPupilsFoundTextView()
+        } else {
+            hideNoPupilsFoundTextView()
         }
-        for (pupil in pupils) {
-            val pupilButton = Button(this)
-            pupilButton.text = pupil.name
-            pupilButton.background = resources.getDrawable(R.drawable.list_button)
-            pupilButton.textColor = resources.getColor(R.color.colorFunkyPrimaryGray)
-            pupilButton.setOnClickListener { showPupilOptionsDialog(pupil) }
-            linearLayout.addView(pupilButton)
-        }
+    }
+
+    private fun showNoPupilsFoundTextView() {
+        val ltInflater = layoutInflater
+        val linearLayout: LinearLayout = findViewById(R.id.pupils_linearLayout)
+        val view = ltInflater.inflate(R.layout.no_pupils_found_view, linearLayout, true)
+    }
+
+    private fun hideNoPupilsFoundTextView() {
+        val linearLayout: LinearLayout = findViewById(R.id.pupils_linearLayout)
+        linearLayout.removeView(findViewById(R.id.no_pupils_found_textView))
     }
 
     private fun showCreatePupilDialog() {
@@ -104,7 +114,8 @@ class PupilsManagementActivity : AppCompatActivity(), CreatePupilDialog.CreatePu
 
     private fun deletePupil(pupil: Pupil) {
         ChitaloidRepository.getInstance().deletePupil(pupil)
-        updatePupilsButtons()
-        toast("Пользователь был удален")
+        pupilsAdapter.remove(pupil)
+        updatePupilsList()
+        toast("Пользователь " + pupil.name + " был удален")
     }
 }

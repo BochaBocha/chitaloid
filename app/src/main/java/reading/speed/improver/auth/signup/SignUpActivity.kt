@@ -13,8 +13,10 @@ import reading.speed.improver.service.ChitaloidService
 import reading.speed.improver.user.pupil.Pupil
 import reading.speed.improver.user.pupil.PupilMainActivity
 import reading.speed.improver.utils.InputValidator
+import android.graphics.drawable.AnimationDrawable
 
 class SignUpActivity : AppCompatActivity() {
+    private lateinit var animationDrawable: AnimationDrawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +24,7 @@ class SignUpActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         val pupilNameInput: EditText = findViewById(R.id.pupil_name_input)
         val signUpButton: Button = findViewById(R.id.sign_up_btn)
-        signUpButton.setOnClickListener{tryToSignUp(pupilNameInput.text)}
+        signUpButton.setOnClickListener { tryToSignUp(pupilNameInput.text) }
     }
 
     private fun tryToSignUp(name: CharSequence) {
@@ -48,6 +50,4 @@ class SignUpActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
-
 }

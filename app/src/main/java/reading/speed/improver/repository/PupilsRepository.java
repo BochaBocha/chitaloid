@@ -31,7 +31,7 @@ public class PupilsRepository {
     }
 
     void addPupil(final Pupil pupil) {
-        new insertAsyncTask(mAppDataBase.getPupilDao()).execute(pupil);
+       new insertAsyncTask(mAppDataBase.getPupilDao()).execute(pupil);
     }
 
     List<Pupil> getPupils() throws ExecutionException, InterruptedException {

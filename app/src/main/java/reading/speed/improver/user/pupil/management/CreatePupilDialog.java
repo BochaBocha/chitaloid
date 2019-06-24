@@ -34,7 +34,7 @@ public class CreatePupilDialog extends DialogFragment {
             mListener = (CreatePupilDialogListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement CreatePupilDialogListener");
+                    + " must implement PupilsAdapterListener");
         }
     }
 
@@ -73,7 +73,7 @@ public class CreatePupilDialog extends DialogFragment {
             case SUCCESS: {
                 ChitaloidService chitaloidService = new ChitaloidService();
                 Pupil pupil = chitaloidService.createPupil(pupilName);
-                chitaloidService.addPupil(pupil);
+                pupil = chitaloidService.addPupil(pupil);
                 mListener.onPupilCreatedClick(this, pupil);
                 break;
             }

@@ -43,24 +43,25 @@
         >
             <Button
                     android:text="@string/sign_in"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="5dp"
                     android:background="@drawable/oval_button_green"
                     android:id="@+id/sign_in_btn"
             />
             <Button
                     android:text="@string/sign_up"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:layout_gravity="center"
                     android:background="@drawable/oval_button_red"
                     android:id="@+id/sign_up_btn"
             />
             <Button
                     android:text="@string/i_am_a_teacher"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

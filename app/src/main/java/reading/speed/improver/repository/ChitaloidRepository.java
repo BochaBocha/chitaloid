@@ -62,8 +62,9 @@ public class ChitaloidRepository {
         return new Pupil(null, name);
     }
 
-    public void addPupil(final Pupil pupil) {
+    public Pupil addPupil(final Pupil pupil) throws ExecutionException, InterruptedException {
         pupilsRepository.addPupil(pupil);
+        return pupilsRepository.getPupilByName(pupil.name);
     }
 
     public List<Pupil> getPupils() throws ExecutionException, InterruptedException {

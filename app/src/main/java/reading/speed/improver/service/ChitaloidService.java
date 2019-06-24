@@ -42,9 +42,15 @@ public class ChitaloidService {
         return new Pupil(null, name);
     }
 
-    public void addPupil(Pupil pupil) {
-        chitaloidRepository.addPupil(pupil);
-
+    public Pupil addPupil(Pupil pupil) {
+        try {
+            return chitaloidRepository.addPupil(pupil);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public List<Pupil> getPupils() {
