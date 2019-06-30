@@ -1,3 +1,11 @@
+## Читалоид
+![Alt text](/screenshots/main_screen.jpg?raw=true "Главный экран")
+![Alt text](/screenshots/pupil_main_screen.jpg?raw=true "Главный экран ученика")
+![Alt text](/screenshots/pupils_management.jpg?raw=true "Экран управления аккаунами")
+![Alt text](/screenshots/schulte_exercise.jpg?raw=true "Экран упражнения")
+![Alt text](/screenshots/exercise_settings.jpg?raw=true "Настройки упражнения")
+## Список упражнений
+Часть упражнений не реализованы.
 ## Пирамиды
 1. Появляется постепенно, можно останавливать строчки.
 2. Появляется полностью.
