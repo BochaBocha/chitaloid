@@ -7,7 +7,7 @@
 
     <TextView
             android:text="@string/create_pupil_title"
-            android:layout_width="191dp"
+            android:layout_width="match_parent"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
             android:id="@+id/create_pupil_title" android:textSize="18sp"/>

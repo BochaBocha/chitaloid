@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
               android:padding="10dp"
               android:keepScreenOn="false"
               android:layout_height="wrap_content" android:layout_width="wrap_content">
@@ -41,20 +41,6 @@
                     android:max="10"
                     android:progress="3"
                     android:id="@+id/seekBar_speed"/>
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/amount_of_letters_selected"
-                    android:gravity="center"
-            />
-            <SeekBar
-                    style="@android:style/Widget.DeviceDefault.SeekBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-
-                    android:max="10"
-                    android:progress="3"
-                    android:id="@+id/amount_of_letters_seekBar"/>
         </LinearLayout>
     </ScrollView>
     <Button

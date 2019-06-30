@@ -1,4 +1,4 @@
-package reading.speed.improver.exercises.word.appearance.settings;
+package reading.speed.improver.exercises.word.searching.settings;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import reading.speed.improver.R;
-import reading.speed.improver.exercises.word.appearance.settings.model.SettingsModel;
+import reading.speed.improver.exercises.word.searching.settings.model.SettingsModel;
 
 
 // TODO: fix crash when onStop() occurs
@@ -19,10 +19,8 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
     SettingsModel settingsModel;
     private SeekBar fontSizeSeekBar;
     private SeekBar speedSeekBar;
-    private SeekBar amountOfLettersSeekBar;
     private TextView fontSizeSelectedTextView;
     private TextView speedSelectedTextView;
-    private TextView amountOfLetterTextView;
     private View view;
 
     public interface ExerciseSettingsDialogListener {
@@ -52,7 +50,7 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        view = inflater.inflate(R.layout.emerging_words_exercise_settings, null);
+        view = inflater.inflate(R.layout.word_searching_exercise_settings, null);
 
         builder.setView(view);
 
@@ -66,11 +64,6 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
         speedSelectedTextView = view.findViewById(R.id.speed_selected);
         initSpeedSeekBar();
 
-        amountOfLettersSeekBar = view.findViewById(R.id.amount_of_letters_seekBar);
-
-        amountOfLetterTextView = view.findViewById(R.id.amount_of_letters_selected);
-        initAmountOfLettersSeekBar();
-
         Button settingsButton = view.findViewById(R.id.button_ok);
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +71,7 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 mListener.onSettingsOkClick(ExerciseSettingsDialogFragment.this,
                         new SettingsModel(fontSizeSeekBar.getProgress() * 0.1f + 1,
-                                speedSeekBar.getProgress() * 10 + 60,
-                                amountOfLettersSeekBar.getProgress() + 3));
+                                speedSeekBar.getProgress() * 1000));
             }
         });
 
@@ -113,7 +105,7 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
         speedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                speedSelectedTextView.setText("Скорость: " + String.valueOf(((progress) * 10) + 60) + " слов в минуту");
+                speedSelectedTextView.setText("Время показа: " + String.valueOf(((progress) * 10) + 60));
             }
 
             @Override
@@ -123,34 +115,11 @@ public class ExerciseSettingsDialogFragment extends DialogFragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                speedSelectedTextView.setText("Скорость: " +
-                        String.valueOf(((seekBar.getProgress()) * 10) + 60) +
-                        " слов в минуту");
+                speedSelectedTextView.setText("Время показа: " +
+                        String.valueOf(((seekBar.getProgress()) * 10) + 60));
             }
         });
 
-        speedSeekBar.setProgress((settingsModel.getSpeed() - 60) / 10);
-    }
-
-    private void initAmountOfLettersSeekBar() {
-        amountOfLettersSeekBar.setMax(12);
-        amountOfLettersSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                amountOfLetterTextView.setText("Букв в слове: " + String.valueOf(progress + 3));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                amountOfLetterTextView.setText("Букв в слове: " +
-                        String.valueOf(seekBar.getProgress() + 3));
-            }
-        });
-        amountOfLettersSeekBar.setProgress((settingsModel.getAmountOfLetters() - 3));
+        speedSeekBar.setProgress((settingsModel.getSpeed()) / 1000);
     }
 }

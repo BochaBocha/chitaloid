@@ -10,6 +10,7 @@ import reading.speed.improver.exercises.text.appearance.fading.FadingTextExercis
 import reading.speed.improver.exercises.text.misplaced.spaces.MisplacedSpacesExercise;
 import reading.speed.improver.exercises.text.spaceless.SpacelessTextExercise;
 import reading.speed.improver.exercises.word.appearance.EmergingWordsExercise;
+import reading.speed.improver.exercises.word.searching.WordSearchingExercise;
 import reading.speed.improver.repository.ChitaloidRepository;
 import reading.speed.improver.repository.exercises.Exercises;
 import reading.speed.improver.statistic.Statistic;
@@ -96,6 +97,16 @@ public class ChitaloidService {
         }
     }
 
+    public Word getRandomWord() {
+        int amountOfLetters = new Random().nextInt(8) + 3;
+        try {
+            return chitaloidRepository.getRandomWord(amountOfLetters);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Class getExerciseActivity() {
         return chitaloidRepository.getExerciseActivity();
     }
@@ -114,6 +125,10 @@ public class ChitaloidService {
 
     public EmergingTextExercise createEmergingTextExercise() {
         return chitaloidRepository.createEmergingTextExercise();
+    }
+
+    public WordSearchingExercise createWordSearchingExercise() {
+        return chitaloidRepository.createWordSearchingExercise();
     }
 
     public FadingTextExercise createFadingTextExerciseModel() {

@@ -1,7 +1,6 @@
-package reading.speed.improver.exercises.text.appearance.fading.ui;
+package reading.speed.improver.exercises.word.searching.ui;
 
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -12,31 +11,32 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import reading.speed.improver.R;
-import reading.speed.improver.exercises.menu.ExerciseMenuDialogFragment;
-import reading.speed.improver.exercises.text.appearance.fading.settings.ExerciseSettingsDialogFragment;
-import reading.speed.improver.exercises.text.appearance.fading.settings.model.SettingsModel;
-import reading.speed.improver.exercises.text.appearance.fading.viewModel.FadingTextExerciseViewModel;
+import reading.speed.improver.exercises.word.appearance.menu.ExerciseMenuDialogFragment;
+import reading.speed.improver.exercises.word.searching.settings.ExerciseSettingsDialogFragment;
+import reading.speed.improver.exercises.word.searching.settings.model.SettingsModel;
+import reading.speed.improver.exercises.word.searching.viewModel.WordSearchingExerciseViewModel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
-public class FadingTextExerciseActivity extends AppCompatActivity implements ExerciseMenuDialogFragment.ExerciseMenuDialogListener,
+public class WordSearchingExerciseActivity extends AppCompatActivity implements ExerciseMenuDialogFragment.ExerciseMenuDialogListener,
         ExerciseSettingsDialogFragment.ExerciseSettingsDialogListener {
-    private FadingTextExerciseViewModel exerciseViewModel;
+    private WordSearchingExerciseViewModel exerciseViewModel;
     private View mContentView;
     private TextView currentSpeedView;
-    private FadingTextUIManager fadingTextUIManager;
+    private WordSearchingUIManager wordSearchingUIManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.fading_text_exercise_activity);
+        setContentView(R.layout.word_searching_layout);
         getSupportActionBar().hide();
         mContentView = findViewById(R.id.fullscreen_content);
         currentSpeedView = findViewById(R.id.current_speed_view);
-        exerciseViewModel = ViewModelProviders.of(this).get(FadingTextExerciseViewModel.class);
-        fadingTextUIManager = new FadingTextUIManager(this);
+        exerciseViewModel = ViewModelProviders.of(this).get(WordSearchingExerciseViewModel.class);
+        wordSearchingUIManager = new WordSearchingUIManager(this);
         final Button menuButton = findViewById(R.id.menu_button);
         menuButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -55,23 +55,31 @@ public class FadingTextExerciseActivity extends AppCompatActivity implements Exe
         final Observer<Float> textSizeCoeffObserver = new Observer<Float>() {
             @Override
             public void onChanged(@Nullable final Float textSizeCoeff) {
-                fadingTextUIManager.changeTextSizeCoeff(textSizeCoeff);
+                wordSearchingUIManager.changeTextSizeCoeff(textSizeCoeff);
             }
         };
         exerciseViewModel.getCurrentTextSizeCoeff().observe(this, textSizeCoeffObserver);
 
-        final Observer<SpannableString> currentTextObserver = new Observer<SpannableString>() {
+        final Observer<String> currentWantedWordObserver = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable final SpannableString text) {
-                fadingTextUIManager.setText(text);
+            public void onChanged(@Nullable final String wantedWord) {
+                wordSearchingUIManager.setWantedWord(wantedWord);
             }
         };
-        exerciseViewModel.getCurrentText().observe(this, currentTextObserver);
+        exerciseViewModel.getWantedWord().observe(this, currentWantedWordObserver);
+
+        final Observer<ArrayList<String>> currentWordsObserver = new Observer<ArrayList<String>>() {
+            @Override
+            public void onChanged(@Nullable final ArrayList<String> words) {
+                wordSearchingUIManager.setWords(words);
+            }
+        };
+        exerciseViewModel.getWords().observe(this, currentWordsObserver);
 
     }
 
     private void displayCurrentSpeed(Integer speed) {
-        currentSpeedView.setText("Скорость: " + speed + " слов в минуту");
+        currentSpeedView.setText("Задержка: " + speed/1000 + " сек");
     }
 
     private void onMenuButtonClicked() {
@@ -102,12 +110,6 @@ public class FadingTextExerciseActivity extends AppCompatActivity implements Exe
     public void onMenuContinueClick(DialogFragment dialog) {
         dialog.dismiss();
         exerciseViewModel.startStopwatch();
-    }
-
-    @Override
-    public void onMenuRestartClick(DialogFragment dialog) {
-        dialog.dismiss();
-        exerciseViewModel.restartExercise();
     }
 
     @Override

@@ -14,14 +14,14 @@ import reading.speed.improver.R;
 import reading.speed.improver.exercises.word.appearance.menu.ExerciseMenuDialogFragment;
 import reading.speed.improver.exercises.word.appearance.settings.ExerciseSettingsDialogFragment;
 import reading.speed.improver.exercises.word.appearance.settings.model.SettingsModel;
-import reading.speed.improver.exercises.word.appearance.viewModel.EmergingTextExerciseViewModel;
+import reading.speed.improver.exercises.word.appearance.viewModel.EmergingWordsExerciseViewModel;
 
 import java.io.Serializable;
 
 
 public class EmergingWordsExerciseActivity extends AppCompatActivity implements ExerciseMenuDialogFragment.ExerciseMenuDialogListener,
         ExerciseSettingsDialogFragment.ExerciseSettingsDialogListener {
-    private EmergingTextExerciseViewModel exerciseViewModel;
+    private EmergingWordsExerciseViewModel exerciseViewModel;
     private View mContentView;
     private TextView currentSpeedView;
     private EmergingWordsUIManager emergingWordsUIManager;
@@ -34,7 +34,7 @@ public class EmergingWordsExerciseActivity extends AppCompatActivity implements 
         getSupportActionBar().hide();
         mContentView = findViewById(R.id.fullscreen_content);
         currentSpeedView = findViewById(R.id.current_speed_view);
-        exerciseViewModel = ViewModelProviders.of(this).get(EmergingTextExerciseViewModel.class);
+        exerciseViewModel = ViewModelProviders.of(this).get(EmergingWordsExerciseViewModel.class);
         emergingWordsUIManager = new EmergingWordsUIManager(this);
         final Button menuButton = findViewById(R.id.menu_button);
         menuButton.setOnClickListener(new View.OnClickListener() {

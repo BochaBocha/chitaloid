@@ -31,6 +31,11 @@
                 android:theme="@style/FunkyKidsStyle">
         </activity>
         <activity
+                android:name=".exercises.word.searching.ui.WordSearchingExerciseActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:theme="@style/FunkyKidsStyle">
+        </activity>
+        <activity
                 android:name=".exercises.text.appearance.emerging.ui.EmergingTextExerciseActivity"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:theme="@style/FunkyKidsStyle">

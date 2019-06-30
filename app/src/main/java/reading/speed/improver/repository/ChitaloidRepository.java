@@ -12,6 +12,7 @@ import reading.speed.improver.exercises.text.appearance.fading.FadingTextExercis
 import reading.speed.improver.exercises.text.misplaced.spaces.MisplacedSpacesExercise;
 import reading.speed.improver.exercises.text.spaceless.SpacelessTextExercise;
 import reading.speed.improver.exercises.word.appearance.EmergingWordsExercise;
+import reading.speed.improver.exercises.word.searching.WordSearchingExercise;
 import reading.speed.improver.repository.exercises.Exercises;
 import reading.speed.improver.repository.exercises.ExercisesRepository;
 import reading.speed.improver.statistic.Statistic;
@@ -127,6 +128,10 @@ public class ChitaloidRepository {
 
     public EmergingWordsExercise createEmergingWordsExercise() {
         return exercisesRepository.createEmergingWordsExercise();
+    }
+
+    public WordSearchingExercise createWordSearchingExercise() {
+        return exercisesRepository.createWordSearchingExercise();
     }
 
     public Text getText(final int id) throws ExecutionException, InterruptedException {

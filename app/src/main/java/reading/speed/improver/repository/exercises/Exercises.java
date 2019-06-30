@@ -9,7 +9,8 @@ public enum Exercises {
     FADING_TEXT("Исчезающие строчки"),
     SPACELESS_TEXT("Сплошной текст"),
     MISPLACED_SPACES_TEXT("Неправильные пробелы"),
-    EMERGING_WORDS("Слова");
+    EMERGING_WORDS("Слова"),
+    WORD_SEARCHING("Найди слово");
 
     private String title;
 

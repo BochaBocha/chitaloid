@@ -19,6 +19,8 @@ import reading.speed.improver.exercises.text.spaceless.SpacelessTextExercise;
 import reading.speed.improver.exercises.text.spaceless.ui.SpacelessTextExerciseActivity;
 import reading.speed.improver.exercises.word.appearance.EmergingWordsExercise;
 import reading.speed.improver.exercises.word.appearance.ui.EmergingWordsExerciseActivity;
+import reading.speed.improver.exercises.word.searching.WordSearchingExercise;
+import reading.speed.improver.exercises.word.searching.ui.WordSearchingExerciseActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +43,7 @@ public class ExercisesRepository {
         exercises.put(Exercises.SPACELESS_TEXT.getTitle(), Exercises.SPACELESS_TEXT);
         exercises.put(Exercises.MISPLACED_SPACES_TEXT.getTitle(), Exercises.MISPLACED_SPACES_TEXT);
         exercises.put(Exercises.EMERGING_WORDS.getTitle(), Exercises.EMERGING_WORDS);
+        exercises.put(Exercises.WORD_SEARCHING.getTitle(), Exercises.WORD_SEARCHING);
     }
 
     public Map<String, Exercises> getExercises() {
@@ -67,6 +70,8 @@ public class ExercisesRepository {
                 return MisplacedSpacesExerciseActivity.class;
             case EMERGING_WORDS:
                 return EmergingWordsExerciseActivity.class;
+            case WORD_SEARCHING:
+                return WordSearchingExerciseActivity.class;
             default:
                 return SchulteExerciseActivity.class;
         }
@@ -144,6 +149,14 @@ public class ExercisesRepository {
         DefaultExerciseParams exerciseParams = new DefaultExerciseParams(paramsBuilder);
 
         return new EmergingWordsExercise(exerciseParams);
+    }
+
+    public WordSearchingExercise createWordSearchingExercise() {
+        DefaultExerciseParamsBuilder paramsBuilder = new DefaultExerciseParamsBuilder();
+        paramsBuilder.setName(Exercises.WORD_SEARCHING.getTitle());
+        DefaultExerciseParams exerciseParams = new DefaultExerciseParams(paramsBuilder);
+
+        return new WordSearchingExercise(exerciseParams);
     }
 
     public void invalidateCurrentExercise() {
